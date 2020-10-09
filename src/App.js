@@ -1,26 +1,41 @@
 import React from 'react';
+import ReactDom from 'react-dom'
 import logo from './logo.svg';
 import './App.css';
+import Search from './Containers/Search'
+import Friends from './Containers/Friends'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+
+  makeBook=(data)=>{
+    // gets data from Results and performs POST request
+    console.log('click heard by makeBook in App', data)
+    let options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+
+    fetch('http://localhost:3000/books', options)
+    .then(resp=> resp.json())
+    .then(newBook => console.log(newBook))
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <header className="App-header">
+          <Search makeBook={this.makeBook}/>
+          <Friends path='/community' />
+        </header>
+      </div>
+    );
+  }
+
+
 }
-
 export default App;
