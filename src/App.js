@@ -9,7 +9,7 @@ class App extends React.Component {
 
 
   makeBook=(data)=>{
-    // gets data from Results and performs POST request
+    // gets data from Results and performs POST request to /books
     console.log('click heard by makeBook in App', data)
     let options = {
       method: 'POST',
@@ -24,6 +24,26 @@ class App extends React.Component {
     .then(resp=> resp.json())
     .then(newBook => console.log(newBook))
   }
+
+  // addBookToLibrary=(book)=>{
+  //   // gets book from makeBook and creates book_user instance
+  //   console.log('entered addBookToLibrary', book)
+
+  //   let data = {
+  //     user_id: ,
+  //     book_id: 
+  //   }
+  //   let options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //     body: JSON.stringify(data)
+  //   }
+
+  //   }
+  
 
   render(){
     return (
