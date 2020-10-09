@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 class Login extends React.Component {
 
@@ -16,6 +17,7 @@ class Login extends React.Component {
     submitHandler=(e)=>{
         console.log('cleard heard in Login submitHandler', this.state)
         e.preventDefault()
+        //call function to auth#create
     }
 
     render(){
@@ -26,7 +28,27 @@ class Login extends React.Component {
                 <input type='submit' value='login' />
             </form>
             
-        )
+            )
+        }
     }
+    
+    
+    
+const msp=(state)=>{
+    console.log(state)
+    return {state: state}
 }
-export default Login
+
+// componentDidMount=()=>{
+//     const mdp=(dispatch)=>{
+//         console.log("Redux state", state)
+//         let user_id= 3
+//         return {setCurrentUser: (user_id) => dispatch({
+//             type: "SET_CURRENT_USER", 
+//             payload: user_id}
+//         )}
+//     }
+// }
+    
+
+export default connect(msp)(Login)

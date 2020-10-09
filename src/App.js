@@ -5,9 +5,9 @@ import './App.css';
 import Search from './Containers/Search'
 import Friends from './Containers/Friends'
 import Credentials from './Containers/Credentials'
+import Profile from './Components/Profile'
 
 class App extends React.Component {
-
 
   makeBook=(data)=>{
     // gets data from Results and performs POST request to /books
@@ -20,12 +20,10 @@ class App extends React.Component {
       },
       body: JSON.stringify(data)
     }
-
     fetch('http://localhost:3000/books', options)
     .then(resp=> resp.json())
     .then(newBook => console.log(newBook))
   }
-
 
   makeUser=(data)=>{
     // gets data from Signup and performs POST request to /users
@@ -49,8 +47,9 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <Search makeBook={this.makeBook}/>
-          <Friends path='/community' />
           <Credentials makeUser={this.makeUser}/>
+          <Profile />
+          <Friends path='/community' />
         </header>
       </div>
     );

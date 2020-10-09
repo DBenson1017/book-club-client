@@ -10,11 +10,13 @@ class Friends extends React.Component {
         this.props.fetchUsers()
     }
 
+    
     generateUserCards=()=>{
        return  this.props.users.map((user) => <UserCard user={user}/>)
     }
 
     render(){
+        console.log(this.props)
         return(
             <div>
               {this.generateUserCards()}
