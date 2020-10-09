@@ -8,8 +8,6 @@ import {createStore, applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
-
-
 const rootReducer=(currentState={}, action)=> {
   switch(action.type){
     case 'FETCH_USERS': return {
