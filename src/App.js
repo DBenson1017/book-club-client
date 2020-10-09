@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Search from './Containers/Search'
 import Friends from './Containers/Friends'
+import Credentials from './Containers/Credentials'
 
 class App extends React.Component {
 
@@ -25,25 +26,23 @@ class App extends React.Component {
     .then(newBook => console.log(newBook))
   }
 
-  // addBookToLibrary=(book)=>{
-  //   // gets book from makeBook and creates book_user instance
-  //   console.log('entered addBookToLibrary', book)
 
-  //   let data = {
-  //     user_id: ,
-  //     book_id: 
-  //   }
-  //   let options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   }
-
-  //   }
-  
+  makeUser=(data)=>{
+    // gets data from Signup and performs POST request to /users
+    console.log('click heard by makeUser in App', data)
+    let options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+    fetch('http://localhost:3000/users', options)
+    .then(resp=> resp.json())
+    .then(newBook => console.log(newBook))
+    // shoudl redirect or send new History to profile page? 
+  }
 
   render(){
     return (
@@ -51,6 +50,7 @@ class App extends React.Component {
         <header className="App-header">
           <Search makeBook={this.makeBook}/>
           <Friends path='/community' />
+          <Credentials makeUser={this.makeUser}/>
         </header>
       </div>
     );
