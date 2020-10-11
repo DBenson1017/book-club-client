@@ -39,16 +39,4 @@ const msp=(state)=>{
     return {state: state}
 }
 
-// componentDidMount=()=>{
-//     const mdp=(dispatch)=>{
-//         console.log("Redux state", state)
-//         let user_id= 3
-//         return {setCurrentUser: (user_id) => dispatch({
-//             type: "SET_CURRENT_USER", 
-//             payload: user_id}
-//         )}
-//     }
-// }
-    
-
 export default connect(msp)(Login)

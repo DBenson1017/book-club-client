@@ -1,59 +1,73 @@
 import React from 'react';
-import {connect} from 'react-redux'
-import {setUser} from '../actions'
 
+class ReadUser extends React.Component{
 
-class Profile extends React.Component{
     state={
+        edit: false, 
         first_name:'',
         last_name:'',
         email:'',
         username:''
     }
 
-    onClick=()=>{
-        //show or hide the edit form 
-    }
     changeHandler=(e)=>{
         this.setState({
         [e.target.name]: e.target.value
     })
-}
-    submitHandler=(e)=>{
-        //Patch fetch with this.state
-        //hide the edit form 
-        e.preventDefault()
-        let url = 'http://localhost:3000/users/'
-        let id = this.props.current_user[0]
-        let options = {
-            method: 'PATCH',
-            headers: { 
-                'Content-Type': 'application/',
-                'accept': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        }
-        fetch((url+id), options)
-            .then(resp=> resp.json())
-            .then(data=> console.log(data))
     }
 
-    componentDidMount=()=>{
-        this.props.setUser()
+    showEditForm=()=>{
+        this.setState({
+            edit: true
+        })
+    }
+
+    submitHandler=(e)=>{
+        e.preventDefault()
+        console.log('click heard in submitHandler (ReadUser)')
+        console.log( parseInt(this.props.current_user[0]) )
+        let baseUrl = 'http://localhost:3000/users/'
+        let id = parseInt(this.props.current_user[0])
+        let data = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.emnail,
+            username: this.state.username
+        }
+        let options = {
+            method: 'PATCH', 
+            headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+        fetch('http://localhost:3000/users/3', options)
+
+    }
+
+    deleteUser=()=>{
+        //make delete request
     }
 
     render(){
+        console.log('ReadUSer props', this.props)
         return(
-            <>
-            {this.props.current_user ? 
-            <div> 
-            <h2> Welcome {this.props.current_user[1]}!</h2>               
+            <> 
+            {this.props.current_user?
+            <div>
+                <h2> Welcome {this.props.current_user[1]}!</h2>               
                 <h3>first name: {this.props.current_user[1]} </h3>
                 <h3>last name: {this.props.current_user[2]} </h3>
                 <h3>email: {this.props.current_user[3]} </h3>
                 <h3>username: {this.props.current_user[4]} </h3>
-                <button>Edit Profile</button> 
-
+                <button onClick={this.showEditForm}>Edit Profile</button> 
+                <button onClick={this.deleteUser}>Delete Profile</button> 
+            </div>
+            :
+            <h3>loading... please login</h3>               
+            }
+            {this.state.edit ? 
             <form id='edit-profile-form' onSubmit={this.submitHandler}>
                 <input onChange={this.changeHandler} name='first_name' placeholder={this.props.current_user[1]} type='text' value={this.state.first_name} /> <br></br>      
                 <input onChange={this.changeHandler} name='last_name' placeholder={this.props.current_user[2]} type='text' value={this.state.last_name} /><br></br>       
@@ -61,22 +75,12 @@ class Profile extends React.Component{
                 <input onChange={this.changeHandler} name='email' placeholder={this.props.current_user[3]} type='text' value={this.state.email}/><br></br>           
                 <input type='submit' value='Submit'/>
             </form>
-
-            </div>    
-                : <h2>Please login</h2>}
+            :
+            null 
+            }
             </>
         )
     }
 }
 
-const msp=(state)=>{
-    console.log(state)
-    return {current_user: state.current_user}
-}
-
-const mdp=(dispatch)=>{
-    return {setUser: ()=> dispatch(setUser())}
-}
-
-export default connect(msp, mdp)(Profile)
-
+export default ReadUser
