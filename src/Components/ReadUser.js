@@ -4,10 +4,10 @@ class ReadUser extends React.Component{
 
     state={
         edit: false, 
-        first_name:'',
-        last_name:'',
-        email:'',
-        username:''
+        first_name: '',
+        last_name: '',
+        email: '',
+        username: ''
     }
 
     changeHandler=(e)=>{
@@ -18,22 +18,37 @@ class ReadUser extends React.Component{
 
     showEditForm=()=>{
         this.setState({
-            edit: true
+            edit: true,
         })
     }
 
-    submitHandler=(e)=>{
+    dataManager=(e)=>{
         e.preventDefault()
-        console.log('click heard in submitHandler (ReadUser)')
-        console.log( parseInt(this.props.current_user[0]) )
+        let data = {}
+        if (this.state.first_name){
+            data.first_name = this.state.first_name
+        }
+        if (this.state.last_name){
+            data.last_name= this.state.last_name
+        }
+        if (this.state.username){
+            data.username= this.state.username
+        }
+        if (this.state.email){
+            data.email = this.state.email
+        }
+        this.submitHandler(data)
+    }
+
+    submitHandler=(data)=>{
+        // e.preventDefault()
+        // console.log('click heard in submitHandler (ReadUser)')
+        // console.log( parseInt(this.props.current_user[0]) )
+        console.log(data)
+
         let baseUrl = 'http://localhost:3000/users/'
         let id = parseInt(this.props.current_user[0])
-        let data = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            email: this.state.emnail,
-            username: this.state.username
-        }
+
         let options = {
             method: 'PATCH', 
             headers: {
@@ -68,7 +83,7 @@ class ReadUser extends React.Component{
             <h3>loading... please login</h3>               
             }
             {this.state.edit ? 
-            <form id='edit-profile-form' onSubmit={this.submitHandler}>
+            <form id='edit-profile-form' onSubmit={this.dataManager}>
                 <input onChange={this.changeHandler} name='first_name' placeholder={this.props.current_user[1]} type='text' value={this.state.first_name} /> <br></br>      
                 <input onChange={this.changeHandler} name='last_name' placeholder={this.props.current_user[2]} type='text' value={this.state.last_name} /><br></br>       
                 <input onChange={this.changeHandler} name='username' placeholder={this.props.current_user[4]} type='text' value={this.state.username}/><br></br>            
