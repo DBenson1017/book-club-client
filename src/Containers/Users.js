@@ -4,7 +4,7 @@ import UserCard from '../Components/UserCard'
 import {fetchUsers} from '../actions'
 
 
-class Friends extends React.Component {
+class Users extends React.Component {
 
     componentDidMount=()=>{
         this.props.fetchUsers()
@@ -12,14 +12,14 @@ class Friends extends React.Component {
 
     
     generateUserCards=()=>{
-       return  this.props.users.map((user) => <UserCard user={user}/>)
+    //    return  this.props.users.map((user) => <UserCard user={user}/>)
     }
 
     render(){
         console.log(this.props)
         return(
             <div>
-              {this.generateUserCards()}
+              <h3>Test text in Users</h3>
             </div>
         )
     }
@@ -34,5 +34,5 @@ const mapDispatchToProps=(dispatch)=>{
     return {fetchUsers: ()=> dispatch(fetchUsers())}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Friends)
+export default connect(mapStateToProps, mapDispatchToProps)(Users)
 // export default Friends 

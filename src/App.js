@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDom from 'react-dom'
 import logo from './logo.svg';
 import './App.css';
+import {Route} from 'react-router-dom'
+
 import Search from './Containers/Search'
-import Friends from './Containers/Friends'
+import Users from './Containers/Users'
 import Credentials from './Containers/Credentials'
-import Profile from './Components/Profile'
+import Profile from './Containers/Profile'
 
 class App extends React.Component {
 
@@ -44,14 +46,13 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
-        <header className="App-header">
-          <Search makeBook={this.makeBook}/>
-          <Credentials makeUser={this.makeUser}/>
-          <Profile />
-          <Friends path='/community' />
-        </header>
-      </div>
+      <header className="App-header">
+          <Route path='/credentials' render={()=>
+          <Credentials makeUser={this.makeUser}/>} />
+          <Route path='/search' render={()=> <Search makeBook={this.makeBook}/>} />
+          <Route path='/profile' render={()=> <Profile />} />
+          <Route path='/users' render={()=> <Users />} />
+        </header> 
     );
   }
 
