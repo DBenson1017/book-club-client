@@ -58,7 +58,18 @@ class ReadUser extends React.Component{
     }
 
     deleteUser=()=>{
-        //make delete request
+        // console.log(data)
+        let baseUrl = 'http://localhost:3000/users/'
+        let id = this.props.current_user[0]
+        let options = {
+            method: 'DELETE', 
+            headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            }
+        }
+        fetch(baseUrl+id , options)
+        //redirect to credentials 
     }
 
     render(){
