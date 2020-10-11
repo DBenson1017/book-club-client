@@ -41,14 +41,9 @@ class ReadUser extends React.Component{
     }
 
     submitHandler=(data)=>{
-        // e.preventDefault()
-        // console.log('click heard in submitHandler (ReadUser)')
-        // console.log( parseInt(this.props.current_user[0]) )
-        console.log(data)
-
+        // console.log(data)
         let baseUrl = 'http://localhost:3000/users/'
-        let id = parseInt(this.props.current_user[0])
-
+        let id = this.props.current_user[0]
         let options = {
             method: 'PATCH', 
             headers: {
@@ -57,12 +52,24 @@ class ReadUser extends React.Component{
             },
             body: JSON.stringify(data)
         }
-        fetch('http://localhost:3000/users/3', options)
-
+        fetch(baseUrl+id , options)
+            .then(resp=>resp.json())
+            .then(data=> console.log(data))
     }
 
     deleteUser=()=>{
-        //make delete request
+        // console.log(data)
+        let baseUrl = 'http://localhost:3000/users/'
+        let id = this.props.current_user[0]
+        let options = {
+            method: 'DELETE', 
+            headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            }
+        }
+        fetch(baseUrl+id , options)
+        //redirect to credentials 
     }
 
     render(){
