@@ -53,13 +53,13 @@ class Note extends React.Component {
 
     render(){
         return(
-            <div className='note' onSubmit={this.submitHandler}>
+            <div className='note' >
                 <h2>{this.props.note.note_content}</h2>
                 <button onClick={this.showEditForm}>Edit Note</button>
                 <button onClick={this.deleteNote}>Delete Note</button>
 
                 {this.state.edit?
-                <form className='edit-form'>
+                <form className='edit-form' onSubmit={this.submitHandler}>
                 <input onChange={this.changeHandler} name='note_content' placeholder={this.props.note.note_content} type='text' value={this.state.note_content}/><br></br>                  
                 <input type='submit' value='Submit'/>
                 </form>:
