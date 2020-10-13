@@ -11,6 +11,7 @@ import Users from './Containers/Users'
 import Credentials from './Containers/Credentials'
 import Profile from './Containers/Profile'
 import Books from './Containers/Books'
+import Library from './Containers/Library'
 
 class App extends React.Component {
 
@@ -80,6 +81,7 @@ class App extends React.Component {
           <Route path='/profile' render={()=> <Profile />} />
           <Route path='/users' render={()=> <Users />} />
           <Route path='/books' render={()=> <Books />} />
+          <Route path='/library' render={()=> <Library />} />
         </header> 
     );
   }
