@@ -5,11 +5,9 @@ import BookCard from '../Components/BookCard'
 
 class Library extends React.Component{
 
-
     generateBooks=()=>{
         return (this.props.state.current_user.books.map(book=> 
             <BookCard book={book} user_id={this.props.state.current_user.id} /> ))
-
     }
 
     render(){
@@ -20,10 +18,7 @@ class Library extends React.Component{
             <h3>Loading...</h3>
             }
             </>
-
-        )
-    }
-
+        )}
 }
 
 const msp=(state)=>{

@@ -5,16 +5,16 @@ import Review from '../Components/Review'
 class BookCard extends React.Component{
 
     state={
-        addNote: false, 
-        addReview: false, 
-        note_content: '',
-        review_content: ''
+        addNote:false, 
+        addReview:false, 
+        note_content:'',
+        review_content:''
     }
 
     showNoteField=()=>{
-      this.setState({ 
-          addNote: true
-      })
+        this.setState({ 
+            addNote: true
+        })
     }
 
     changeHandler=(e)=>{
@@ -36,9 +36,7 @@ class BookCard extends React.Component{
                 'content-type': 'application/json',
                 'accept': 'application/json'
             },
-            body: JSON.stringify(data)
-        }
-
+            body: JSON.stringify(data)}
         fetch('http://localhost:3000/notes', options)
             .then(resp=>resp.json())
             .then(data=>console.log(data))
@@ -48,7 +46,6 @@ class BookCard extends React.Component{
         return this.props.book.reviews.map(review => 
             <Review review={review}/>
         )}
-
     generateNote=()=>{
             return this.props.book.notes.map(note => 
                 <Note note={note}/>
@@ -78,8 +75,7 @@ class BookCard extends React.Component{
             </div>
             :
             <h2>Loading...</h2>   
-        }
-       
+        }     
             </>
         )
     }

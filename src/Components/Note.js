@@ -18,24 +18,20 @@ class Note extends React.Component {
     console.log(this.state.note_content)
     let baseUrl = 'http://localhost:3000/notes/'
     let id = this.props.note.id
-
     let data={note_content: this.state.note_content}
-
     let options = {
         method: 'PATCH', 
         headers: {
             'content-type': 'application/json',
             'accept': 'application/json'
         },
-        body: JSON.stringify(data)
-    }
+        body: JSON.stringify(data)}
     fetch(baseUrl+id , options)
         .then(resp=>resp.json())
         .then(data=> console.log(data))
     }
 
     deleteNote=()=>{
-    // console.log(data)
     let baseUrl = 'http://localhost:3000/notes/'
     let id = this.props.note.id
     let options = {
@@ -46,10 +42,8 @@ class Note extends React.Component {
         }
     }
     fetch(baseUrl+id , options)
-        // .then(resp=> resp.json())
-        // .then(data=>console.log(data))
     //re-render
-}
+    }
 
     showEditForm=()=>{
         this.setState({
