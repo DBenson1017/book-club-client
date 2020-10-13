@@ -17,10 +17,13 @@ const rootReducer=(currentState={}, action)=> {
     case 'SET_USER': return {
       ...currentState, current_user: action.payload
     }
+    case 'FETCH_BOOKS': return {
+      ...currentState, books: action.payload
+    }
   }
   //default return
   return {
-    users: []
+    currentState
   }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {fetchUsers} from '../actions'
 
 class Login extends React.Component {
 
@@ -39,4 +40,8 @@ const msp=(state)=>{
     return {state: state}
 }
 
-export default connect(msp)(Login)
+const mdp=(dispatch)=>{
+    return {fetchUsers: ()=> dispatch(fetchUsers())}
+}
+
+export default connect(msp, mdp)(Login)
