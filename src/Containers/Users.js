@@ -12,15 +12,18 @@ class Users extends React.Component {
 
     
     generateUserCards=()=>{
-    //    return  this.props.users.map((user) => <UserCard user={user}/>)
+       return  this.props.users.map((user) => <UserCard user={user}/>)
     }
 
     render(){
-        console.log(this.props)
         return(
-            <div>
-              <h3>Test text in Users</h3>
-            </div>
+           <>
+           {this.props.users?
+            this.generateUserCards()
+            :
+            <h2>Loading...</h2>
+        }
+           </>
         )
     }
 }
