@@ -12,44 +12,9 @@ import Credentials from './Containers/Credentials'
 import Profile from './Containers/Profile'
 import Books from './Containers/Books'
 import Library from './Containers/Library'
+import NavBar from './Components/NavBar'
 
 class App extends React.Component {
-
-  // makeBook=(data)=>{
-  //   // gets data from Results and performs POST request to /books
-  //   console.log('click heard by makeBook in App', data)
-  //   let options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   }
-  //   fetch('http://localhost:3000/books', options)
-  //   .then(resp=> resp.json())
-  //   .then(newBook => this.addBookToLibrary(newBook))
-  // }
-
-  // addBookToLibrary=(newBook)=>{
-  //   console.log('entered addBookToLibrary')
-  //   let data = {
-  //     book_id: newBook.id, 
-  //     book_title: newBook.title, 
-  //     user_id: this.props.current_user.id
-  //   }
-  //   let options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       'accept': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   }
-  //   fetch('http://localhost:3000/book_users', options)
-  //     .then(resp=> resp.json())
-  //     .then(data => console.log(data))
-  // }
 
   makeUser=(data)=>{
     // gets data from Signup and performs POST request to /users
@@ -75,6 +40,8 @@ class App extends React.Component {
     console.log(this.props.state)
     return (
       <header className="App-header">
+          <NavBar />
+          {/* <Header /> */}
           <Route path='/credentials' render={()=>
           <Credentials makeUser={this.makeUser}/>} />
           <Route path='/search' render={()=> <Search makeBook={this.makeBook}/>} />
@@ -91,11 +58,6 @@ const msp=(state)=>{
   console.log('Redux state', state)
   return {state: state}
 }
-
-// const msp=(state)=>{
-//   console.log(state)
-//   return {current_user: state.current_user}
-// }
 
 const mdp=(dispatch)=>{
   return {setUser: ()=> dispatch(setUser())}
