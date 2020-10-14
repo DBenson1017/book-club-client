@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
-function NavBar() {
+function Header(props){
+
     return (
-      
+        <div className='ui sidebar overlay left inverted visible'>  
         <ul>
             <NavLink to='/profile'>
                 <li>Profile</li>
@@ -21,9 +22,8 @@ function NavBar() {
                 <li>Community Books</li>
             </NavLink>
         </ul>
-    
+        </div>
     )
-
 }
 
-export default NavBar
+export default Header

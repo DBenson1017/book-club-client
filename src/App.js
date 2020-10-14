@@ -13,6 +13,7 @@ import Profile from './Containers/Profile'
 import Books from './Containers/Books'
 import Library from './Containers/Library'
 import NavBar from './Components/NavBar'
+import Header from './Components/Header'
 
 class App extends React.Component {
 
@@ -35,21 +36,24 @@ class App extends React.Component {
   componentDidMount=()=>{
     this.props.setUser()
 }
-
   render(){
     console.log(this.props.state)
     return (
-      <header className="App-header">
-          <NavBar />
-          {/* <Header /> */}
-          <Route path='/credentials' render={()=>
-          <Credentials makeUser={this.makeUser}/>} />
-          <Route path='/search' render={()=> <Search makeBook={this.makeBook}/>} />
-          <Route path='/profile' render={()=> <Profile />} />
-          <Route path='/users' render={()=> <Users />} />
-          <Route path='/books' render={()=> <Books />} />
-          <Route path='/library' render={()=> <Library />} />
-        </header> 
+      <>
+      {/* <Header /> */}
+      <div>
+      <NavBar />
+      </div>
+      <div>
+      <Route path='/credentials' render={()=>
+      <Credentials makeUser={this.makeUser}/>} />
+      <Route path='/search' render={()=> <Search makeBook={this.makeBook}/>} />
+      <Route path='/profile' render={()=> <Profile />} />
+      <Route path='/users' render={()=> <Users />} />
+      <Route path='/books' render={()=> <Books />} />
+      <Route path='/library' render={()=> <Library />} />
+      </div>
+    </>
     );
   }
 }
