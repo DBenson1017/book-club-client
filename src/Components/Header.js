@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import { Segment, Divider } from 'semantic-ui-react'
 
 function Header(props){
 
@@ -22,7 +23,13 @@ function Header(props){
                 <li>Community Books</li>
             </NavLink>
         </ul>
+        <Divider horizontal>Divider Test in Header</Divider>
+          
+       
+
         </div>
+        
+        
     )
 }
 

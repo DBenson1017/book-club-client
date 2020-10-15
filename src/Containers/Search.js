@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import Results from '../Components/Results'
 import {connect} from 'react-redux'
+import { Container, Button, Divider } from 'semantic-ui-react'
 
 class Search extends React.Component{
 
@@ -79,15 +80,28 @@ makeBook=(data)=>{
     render(){
         // console.log(this.props.state.current_user.id)
         return (
-            <div className='container'>
+            <Container textAlign='center'>
                 <form onSubmit={this.submitHandler}> 
                     <div className='form-group'>
                     <input onChange={this.handleChange} type='text'  placeholder='search by book title'/>
                     <button type='submit'>Search</button>
                     </div>
                 </form>
-                {this.state.results ? this.generateBooks() : <> </> }               
-            </div>
+                
+                {this.state.results ? 
+                <Container>
+                   <Divider horizontal>click 'Add to Library' to save a book</Divider>
+                  {this.generateBooks()}
+                </Container>
+                : 
+                <Container>
+                    {/* Stretch goal to add a recommendation  */}
+                </Container>
+                }
+
+
+
+            </Container>
         )
     }
 }
