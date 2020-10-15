@@ -1,27 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import { Segment, Divider } from 'semantic-ui-css'
 
 function NavBar() {
     return (
-      
-        <ul>
+            <div classNames='App-header'>
             <NavLink to='/profile'>
-                <li>Profile</li>
+                <span>Profile</span>
             </NavLink>
             <NavLink to='/search'>
-                <li>Search</li>
+                <span>Search</span>
             </NavLink>
             <NavLink to='/library'>
-                <li>Library</li>
+                <span>Library</span>
             </NavLink>
             <NavLink to='/users'>
-                <li>Community</li>
+                <span>Community</span>
             </NavLink>
             <NavLink to='/books'>
-                <li>Community Books</li>
+                <span>Community Books</span>
             </NavLink>
-        </ul>
-    
+            </div>
     )
 
 }

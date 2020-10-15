@@ -5,6 +5,7 @@ import './App.css';
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setUser} from './actions'
+import { Segment, Divider } from 'semantic-ui-react'
 
 import Search from './Containers/Search'
 import Users from './Containers/Users'
@@ -43,6 +44,7 @@ class App extends React.Component {
       {/* <Header /> */}
       <div>
       <NavBar />
+      <Divider horizontal>'Never trust anyone who has not brought a book with them'</Divider>
       </div>
       <div>
       <Route path='/credentials' render={()=>

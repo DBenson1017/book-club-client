@@ -1,4 +1,5 @@
 import React from 'react';
+import { Segment } from 'semantic-ui-react'
 
 class ReadUser extends React.Component{
 
@@ -18,7 +19,7 @@ class ReadUser extends React.Component{
 
     showEditForm=()=>{
         this.setState({
-            edit: true,
+            edit: (!this.state.edit)
         })
     }
 
@@ -78,13 +79,18 @@ class ReadUser extends React.Component{
             <> 
             {this.props.current_user?
             <div>
-                <h2> Welcome {this.props.current_user.first_name}!</h2>               
-                <h3>first name: {this.props.current_user.first_name} </h3>
-                <h3>last name: {this.props.current_user.last_name} </h3>
-                <h3>email: {this.props.current_user.email} </h3>
-                <h3>username: {this.props.current_user.username} </h3>
+            <Segment>
+            <h2> Welcome {this.props.current_user.first_name}!</h2>               
+            </Segment>
+
+            <Segment raised vertical  textAlign='left'>
+                <h3>First Name: {this.props.current_user.first_name} </h3>
+                <h3>Last Name: {this.props.current_user.last_name} </h3>
+                <h3>Email: {this.props.current_user.email} </h3>
+                <h3>Username: {this.props.current_user.username} </h3>
                 <button onClick={this.showEditForm}>Edit Profile</button> 
                 <button onClick={this.deleteUser}>Delete Profile</button> 
+            </Segment>
             </div>
             :
             <h3>loading... please login</h3>               

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Container, Segment, Divider, Grid, Table, Tab } from 'semantic-ui-react'
 
 class Results extends React.Component{
 
@@ -20,18 +20,74 @@ class Results extends React.Component{
     render(){
         console.log('Results props', this.props)
         return (
-            <Card>
-                {this.props.book.volumeInfo.imageLinks.thumbnail ?  <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} /> :
+            <Segment floated>
+                <Grid columns={2}>
+                    <Grid.Column>
+
+                {this.props.book.volumeInfo.imageLinks.thumbnail ?  <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank' /> :
                 <Image  src='http://getwallpapers.com/wallpaper/full/2/1/9/699354-cute-dog-backgrounds-2560x2048-htc.jpg'/>
-                }
-                <Card.Content>
-                    <Card.Header>{this.props.book.volumeInfo.title}</Card.Header>
-                    <Card.Meta>{this.props.book.volumeInfo.authors[0]}</Card.Meta>
-                </Card.Content>
-                <Card.Content extra>
+            }
+
+                    </Grid.Column>
+            
+                    <Grid.Column>
+                <Table>
+                    <Table.Body>
+
+                        <Table.Row>
+                            <Table.Cell>
+                                <h4>Title</h4>
+                            </Table.Cell>
+                            <Table.Cell>
+                                {this.props.book.volumeInfo.title}
+                            </Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>
+                                <h4>Author</h4>
+                            </Table.Cell>
+                            <Table.Cell>
+                            {this.props.book.volumeInfo.authors[0]}
+                            </Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>
+                                <h4>Published</h4>
+                            </Table.Cell>
+                            <Table.Cell>
+                            {this.props.book.volumeInfo.publishedDate}
+                            </Table.Cell>
+                        </Table.Row>
+
+                        <Table.Row>
+                            <Table.Cell>
+                                <h4>Pages</h4>
+                            </Table.Cell>
+                            <Table.Cell>
+                            {this.props.book.volumeInfo.pageCount}
+                            </Table.Cell>
+                        </Table.Row>
+
+                    </Table.Body>
+                    </Table>
                     <Button onClick={this.clickHandler}>Add to Library</Button>
-                </Card.Content>
-                </Card>
+                    </Grid.Column>
+
+                    {/* <Card.Header>{this.props.book.volumeInfo.title}</Card.Header>
+                    <Card.Meta>{this.props.book.volumeInfo.authors[0]}</Card.Meta> */}
+
+
+                {/* </Table.Row> */}
+                {/* <Card.Content extra> */}
+                {/* </Card.Content> */}
+
+
+
+                </Grid>
+                {/* <Divider vertical section/> */}
+                </Segment>
         )
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Note from '../Components/Note'
 import Review from '../Components/Review'
-import { Card, Icon, Image, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Container, Grid, Header, Reveal } from 'semantic-ui-react'
 
 class BookCard extends React.Component{
 
@@ -83,82 +83,89 @@ class BookCard extends React.Component{
 
     render(){
         return(
-            <Card>
-                <Image src={this.props.book.img} centered/>
-            {this.props.book? 
-            <Card.Content>
-                <Card.Header>{this.props.book.title}</Card.Header>
-                <Card.Meta>{this.props.book.author }</Card.Meta>
-                <Button onClick={this.showNoteField}>Add Note</Button>
-                <Button onClick={this.showReviewField}>Add Review</Button>
-               
-                {this.state.addNote?
+            <>
+
+            <Container> 
+            {this.props.book?   
+                <Grid columns={2}>
+                    <Grid.Column> 
+                        <Header as='h3'>{this.props.book.title}</Header>
+                        <Header as='h3'>{this.props.book.author }</Header>
+                        <Image src={this.props.book.img}/>
+                        <Button onClick={this.showNoteField}>Add Note</Button>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                    {this.props.book.notes.length>0 ? 
+                    <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
+                    </Grid.Column>
+
+                </Grid>
+                :
+                null 
+            }
+            </Container>
+            {this.state.addNote?
+            // <Container>
                 <form className='add-form' onSubmit={this.noteSubmit}>
                 <input onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
                 <input type='submit' value='Submit'/>
-                </form>:
+                </form>
+            // </Container> 
+                :
                 null}
 
-                {this.state.addReview?
-                <form className='add-form' onSubmit={this.reviewSubmit}>
-                <input onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
-                <input onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
-                <input type='submit' value='Submit'/>
-                </form>:
-                null}
+
+        </>)
+
+
+
+
+
+
+
+
+
+
+
+        // return(
+        //     <Card>
+        //         <Image src={this.props.book.img} centered/>
+        //     {this.props.book? 
+        //     <Card.Content>
+        //         <Card.Header>{this.props.book.title}</Card.Header>
+        //         <Card.Meta>{this.props.book.author }</Card.Meta>
+        //         <Button onClick={this.showNoteField}>Add Note</Button>
+        //         <Button onClick={this.showReviewField}>Add Review</Button>
+               
+        //         {this.state.addNote?
+        //         <form className='add-form' onSubmit={this.noteSubmit}>
+        //         <input onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
+        //         <input type='submit' value='Submit'/>
+        //         </form>:
+        //         null}
+
+        //         {this.state.addReview?
+        //         <form className='add-form' onSubmit={this.reviewSubmit}>
+        //         <input onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
+        //         <input onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
+        //         <input type='submit' value='Submit'/>
+        //         </form>:
+        //         null}
                 
-                {this.props.book.reviews.length>0 ? 
-                <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>}
-                {this.props.book.notes.length>0 ? 
-                <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
+        //         {this.props.book.reviews.length>0 ? 
+        //         <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>}
+        //         {this.props.book.notes.length>0 ? 
+        //         <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
 
-            </Card.Content>
-            :
-            <h2>Loading...</h2>   
-        }     
-            </Card>
-        )
+        //     </Card.Content>
+        //     :
+        //     <h2>Loading...</h2>   
+        // }     
+        //     </Card>
+        // )
     }
 
 }
 
 export default BookCard
-
-// copied before messing with styling
-// render(){
-//     return(
-//         <>
-//         {this.props.book? 
-//         <div>
-//             <p>{this.props.book.title}</p>
-//             <p>{this.props.book.author }</p>
-//             <button onClick={this.showNoteField}>Add Note</button>
-//             <button onClick={this.showReviewField}>Add Review</button>
-           
-//             {this.state.addNote?
-//             <form className='add-form' onSubmit={this.noteSubmit}>
-//             <input onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
-//             <input type='submit' value='Submit'/>
-//             </form>:
-//             null}
-
-//             {this.state.addReview?
-//             <form className='add-form' onSubmit={this.reviewSubmit}>
-//             <input onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
-//             <input onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
-//             <input type='submit' value='Submit'/>
-//             </form>:
-//             null}
-            
-//             {this.props.book.reviews.length>0 ? 
-//             <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>}
-//             {this.props.book.notes.length>0 ? 
-//             <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
-
-//         </div>
-//         :
-//         <h2>Loading...</h2>   
-//     }     
-//         </>
-//     )
-// }
