@@ -9,7 +9,8 @@ class BookCard extends React.Component{
         addNote:false, 
         addReview:false, 
         note_content:'',
-        review_content:''
+        review_content:'', 
+        notes:this.props.book.notes
     }
 
     showNoteField=()=>{
@@ -35,9 +36,8 @@ class BookCard extends React.Component{
             user_id: this.props.user_id,
             book_id: this.props.book.id, 
             note_content: this.state.note_content, 
-            star_rating: this.state.star_rating 
+            book_title: this.props.book.title   
         }
-
         let options = {
             method: 'POST',
             headers: {
@@ -84,7 +84,6 @@ class BookCard extends React.Component{
     render(){
         return(
             <>
-
             <Container> 
             {this.props.book?   
                 <Grid columns={2}>
@@ -117,16 +116,9 @@ class BookCard extends React.Component{
 
 
         </>)
-
-
-
-
-
-
-
-
-
-
+}
+}
+export default BookCard
 
         // return(
         //     <Card>
@@ -164,8 +156,3 @@ class BookCard extends React.Component{
         // }     
         //     </Card>
         // )
-    }
-
-}
-
-export default BookCard
