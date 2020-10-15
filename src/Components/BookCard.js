@@ -10,7 +10,7 @@ class BookCard extends React.Component{
         addReview:false, 
         note_content:'',
         review_content:'', 
-        notes:this.props.book.notes
+        notes: this.props.book.notes
     }
 
     showNoteField=()=>{
@@ -47,7 +47,18 @@ class BookCard extends React.Component{
             body: JSON.stringify(data)}
         fetch('http://localhost:3000/notes', options)
             .then(resp=>resp.json())
-            .then(data=>console.log(data))
+            .then(data=>this.addNoteToState(data))
+    }
+
+    addNoteToState=(note)=>{
+        this.setState({notes: [...this.state.notes, note]})
+    }
+
+    removeNoteFromState=(id)=>{
+        let noteArray = this.state.notes
+        let index = noteArray.findIndex(note=> note.id===id)
+        delete noteArray[index]
+        this.setState({notes: noteArray})
     }
 
     reviewSubmit=(e)=>{
@@ -77,8 +88,8 @@ class BookCard extends React.Component{
             <Review review={review}/>
         )}
     generateNote=()=>{
-            return this.props.book.notes.map(note => 
-                <Note note={note}/>
+            return this.state.notes.map(note => 
+                <Note note={note} remove={this.removeNoteFromState}/>
             )}
 
     render(){
@@ -95,7 +106,7 @@ class BookCard extends React.Component{
                     </Grid.Column>
 
                     <Grid.Column>
-                    {this.props.book.notes.length>0 ? 
+                    {this.state.notes.length>0 ? 
                     <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
                     </Grid.Column>
 
