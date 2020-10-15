@@ -89,8 +89,8 @@ makeBook=(data)=>{
                 </form>
                 
                 {this.state.results ? 
-                <Container>
-                   <Divider horizontal>click 'Add to Library' to save a book</Divider>
+                <Container >
+                   <Divider horizontal>click book image to read a sample</Divider>
                   {this.generateBooks()}
                 </Container>
                 : 
