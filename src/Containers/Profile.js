@@ -31,9 +31,9 @@ class Profile extends React.Component{
             .then(data=> console.log(data))
     }
 
-    // componentDidMount=()=>{
-    //     this.props.setUser()
-    // }
+    componentDidMount=()=>{
+        this.props.setUser()
+    }
 
     render(){
         console.log(this.props)
@@ -54,9 +54,9 @@ const msp=(state)=>{
     return {current_user: state.current_user}
 }
 
-// const mdp=(dispatch)=>{
-//     return {setUser: ()=> dispatch(setUser())}
-// }
+const mdp=(dispatch)=>{
+    return {setUser: ()=> dispatch(setUser())}
+}
 
-export default connect(msp)(Profile)
+export default connect(msp, mdp)(Profile)
 

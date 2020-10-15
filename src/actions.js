@@ -22,7 +22,7 @@ export const fetchBooks=()=>{
 
 export const setUser=()=>{
     return function(dispatch){
-        fetch('http://localhost:3000/users/3')
+        fetch('http://localhost:3000/users/23')
             .then(resp=> resp.json())
             .then(data=> dispatch({
                 type: 'SET_USER',
