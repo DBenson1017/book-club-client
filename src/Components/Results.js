@@ -20,7 +20,7 @@ class Results extends React.Component{
     render(){
         console.log('Results props', this.props)
         return (
-            <Segment>
+            <Segment floated>
                 <Grid columns={2}>
                     <Grid.Column>
 
