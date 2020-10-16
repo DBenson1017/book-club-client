@@ -1,9 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import BookCard from '../Components/BookCard'
+import {setUser} from '../actions'
 
 
 class Library extends React.Component{
+
+    componentDidMount=()=>{
+        this.props.setUser()
+    }
 
     generateBooks=()=>{
         return (this.props.state.current_user.books.map(book=> 
@@ -26,4 +31,8 @@ const msp=(state)=>{
     return {state: state}
   }
 
-export default connect(msp)(Library)
+const mdp=(dispatch)=>{
+    return {setUser: ()=> dispatch(setUser())}
+}
+
+export default connect(msp, mdp)(Library)

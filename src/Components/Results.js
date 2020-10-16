@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Icon, Image, Button, Container, Segment, Divider, Grid, Table, Tab } from 'semantic-ui-react'
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 
 class Results extends React.Component{
 
@@ -23,8 +24,8 @@ class Results extends React.Component{
             <Segment floated>
                 <Grid columns={2}>
                     <Grid.Column>
-
-                {this.props.book.volumeInfo.imageLinks.thumbnail ?  <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank' /> :
+                {this.props.book.volumeInfo.imageLinks.thumbnail ?  
+                <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank'/> :
                 <Image  src='http://getwallpapers.com/wallpaper/full/2/1/9/699354-cute-dog-backgrounds-2560x2048-htc.jpg'/>
             }
 
@@ -93,7 +94,7 @@ class Results extends React.Component{
 }
 
 
-export default Results 
+export default withRouter(Results)
 
 
 // copied prior to editing with semantic -ui-
