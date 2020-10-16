@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom'
 import logo from './logo.svg';
 import './App.css';
-import {Route} from 'react-router-dom'
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setUser} from './actions'
 import { Segment, Divider } from 'semantic-ui-react'

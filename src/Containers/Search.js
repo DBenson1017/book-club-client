@@ -3,6 +3,7 @@ import axios from 'axios'
 import Results from '../Components/Results'
 import {connect} from 'react-redux'
 import { Container, Button, Divider } from 'semantic-ui-react'
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 
 class Search extends React.Component{
 
@@ -74,11 +75,14 @@ makeBook=(data)=>{
     }
     fetch('http://localhost:3000/book_users', options)
       .then(resp=> resp.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        this.props.history.push('/library')
+      })
   }
 
     render(){
-        // console.log(this.props.state.current_user.id)
+
         return (
             <Container textAlign='center'>
                 <form onSubmit={this.submitHandler}> 
@@ -111,4 +115,4 @@ const msp=(state)=>{
     return {state: state}
   }
 
-export default connect(msp)(Search)
+export default withRouter(connect(msp)(Search))
