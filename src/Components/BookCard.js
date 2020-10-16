@@ -108,6 +108,7 @@ class BookCard extends React.Component{
                         <Image src={this.props.book.img}  href={this.props.book.link} target='_blank'/>
                         <Button onClick={this.showNoteField}>Add Note</Button>
                         <Button onClick={this.showReviewField}>Add Review</Button>
+                        <Button onClick={this.showReviewField}>Remove from Library</Button>
                     </Grid.Column>
                     <Grid.Column>
                     {this.state.notes.length>0 ? 
