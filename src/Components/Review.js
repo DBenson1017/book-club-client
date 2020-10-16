@@ -60,7 +60,7 @@ class Review extends React.Component {
             }
         }
         fetch(baseUrl+id , options)
-        //re-render
+        this.props.remove(id)
         }
 
     render(){

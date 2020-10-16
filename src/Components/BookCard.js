@@ -10,7 +10,8 @@ class BookCard extends React.Component{
         addReview:false, 
         note_content:'',
         review_content:'', 
-        notes: this.props.book.notes
+        notes: this.props.book.notes, 
+        reviews: this.props.book.reviews
     }
 
     showNoteField=()=>{
@@ -18,18 +19,15 @@ class BookCard extends React.Component{
             addNote: true
         })
     }
-
     showReviewField=()=>{
         this.setState({ 
             addReview: true
         })
     }
-
     changeHandler=(e)=>{
         this.setState({
         [e.target.name]: e.target.value
     })}
-
     noteSubmit=(e)=>{
         e.preventDefault()
         let data = {
@@ -49,11 +47,9 @@ class BookCard extends React.Component{
             .then(resp=>resp.json())
             .then(data=>this.addNoteToState(data))
     }
-
     addNoteToState=(note)=>{
         this.setState({notes: [...this.state.notes, note]})
     }
-
     removeNoteFromState=(id)=>{
         let noteArray = this.state.notes
         let index = noteArray.findIndex(note=> note.id===id)
@@ -70,7 +66,6 @@ class BookCard extends React.Component{
             review_content: this.state.review_content, 
             star_rating: this.state.star_rating
         }
-
         let options = {
             method: 'POST',
             headers: {
@@ -80,12 +75,21 @@ class BookCard extends React.Component{
             body: JSON.stringify(data)}
         fetch('http://localhost:3000/reviews', options)
             .then(resp=>resp.json())
-            .then(data=>console.log(data))
+            .then(data=>this.addReviewToState(data))
+    }
+    addReviewToState=(review)=>{
+        this.setState({reviews: [...this.state.reviews, review]})
+    }
+    removeReviewFromState=(id)=>{
+        let reviewArray = this.state.reviews
+        let index = reviewArray.findIndex(review=> review.id===id)
+        delete reviewArray[index]
+        this.setState({reviews: reviewArray})
     }
 
     generateReview=()=>{
-        return this.props.book.reviews.map(review => 
-            <Review review={review}/>
+        return this.state.reviews.map(review => 
+            <Review review={review} remove={this.removeReviewFromState}/>
         )}
     generateNote=()=>{
             return this.state.notes.map(note => 
@@ -101,69 +105,41 @@ class BookCard extends React.Component{
                     <Grid.Column> 
                         <Header as='h3'>{this.props.book.title}</Header>
                         <Header as='h3'>{this.props.book.author }</Header>
-                        <Image src={this.props.book.img}/>
+                        <Image src={this.props.book.img}  href={this.props.book.link} target='_blank'/>
                         <Button onClick={this.showNoteField}>Add Note</Button>
+                        <Button onClick={this.showReviewField}>Add Review</Button>
                     </Grid.Column>
-
                     <Grid.Column>
                     {this.state.notes.length>0 ? 
                     <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
+                    {this.state.reviews.length>0 ? 
+                    <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>}
                     </Grid.Column>
-
                 </Grid>
                 :
                 null 
             }
             </Container>
-            {this.state.addNote?
-            // <Container>
+            <Container>
+            {this.state.addNote?        
                 <form className='add-form' onSubmit={this.noteSubmit}>
                 <input onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
                 <input type='submit' value='Submit'/>
                 </form>
-            // </Container> 
                 :
                 null}
-
-
+            </Container>
+            <Container>
+            {this.state.addReview?
+                <form className='add-form' onSubmit={this.reviewSubmit}>
+                <input onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
+                <input onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
+                <input type='submit' value='Submit'/>
+                </form>:
+                null}
+            </Container>
         </>)
 }
 }
 export default BookCard
 
-        // return(
-        //     <Card>
-        //         <Image src={this.props.book.img} centered/>
-        //     {this.props.book? 
-        //     <Card.Content>
-        //         <Card.Header>{this.props.book.title}</Card.Header>
-        //         <Card.Meta>{this.props.book.author }</Card.Meta>
-        //         <Button onClick={this.showNoteField}>Add Note</Button>
-        //         <Button onClick={this.showReviewField}>Add Review</Button>
-               
-        //         {this.state.addNote?
-        //         <form className='add-form' onSubmit={this.noteSubmit}>
-        //         <input onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
-        //         <input type='submit' value='Submit'/>
-        //         </form>:
-        //         null}
-
-        //         {this.state.addReview?
-        //         <form className='add-form' onSubmit={this.reviewSubmit}>
-        //         <input onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
-        //         <input onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
-        //         <input type='submit' value='Submit'/>
-        //         </form>:
-        //         null}
-                
-        //         {this.props.book.reviews.length>0 ? 
-        //         <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>}
-        //         {this.props.book.notes.length>0 ? 
-        //         <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
-
-        //     </Card.Content>
-        //     :
-        //     <h2>Loading...</h2>   
-        // }     
-        //     </Card>
-        // )
