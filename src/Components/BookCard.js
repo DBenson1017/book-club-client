@@ -96,6 +96,25 @@ class BookCard extends React.Component{
                 <Note note={note} remove={this.removeNoteFromState}/>
             )}
 
+    deleteBookFromLibrary=()=>{
+        const joins = this.props.book.book_users
+        console.log(joins)
+        let join = joins.find(join => join.book_id === this.props.book.id && join.user_id === this.props.user_id)
+        let baseUrl = 'http://localhost:3000/book_users/'
+        let id = join.id 
+        let options = {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            }}
+
+        fetch(baseUrl+id, options)
+        //dispatch to removee from store
+
+
+    }
+
     render(){
         return(
             <>
@@ -108,7 +127,7 @@ class BookCard extends React.Component{
                         <Image src={this.props.book.img}  href={this.props.book.link} target='_blank'/>
                         <Button onClick={this.showNoteField}>Add Note</Button>
                         <Button onClick={this.showReviewField}>Add Review</Button>
-                        <Button onClick={this.showReviewField}>Remove from Library</Button>
+                        <Button onClick={this.deleteBookFromLibrary}>Remove from Library</Button>
                     </Grid.Column>
                     <Grid.Column>
                     {this.state.notes.length>0 ? 
