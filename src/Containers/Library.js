@@ -12,7 +12,7 @@ class Library extends React.Component{
 
     generateBooks=()=>{
         return (this.props.state.current_user.books.map(book=> 
-            <BookCard book={book} user_id={this.props.state.current_user.id} /> ))
+            <BookCard book={book} user_id={this.props.state.current_user.id} setUser={this.props.setUser} /> ))
     }
 
     render(){
