@@ -14,7 +14,6 @@ import Profile from './Containers/Profile'
 import Books from './Containers/Books'
 import Library from './Containers/Library'
 import NavBar from './Components/NavBar'
-import Header from './Components/Header'
 
 class App extends React.Component {
 

@@ -4,7 +4,7 @@ import { Segment, Divider } from 'semantic-ui-css'
 
 function NavBar() {
     return (
-            <div classNames='App-header'>
+            <div id='header'>
             <NavLink to='/profile'>
                 <span>Profile</span>
             </NavLink>

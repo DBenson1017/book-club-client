@@ -28,7 +28,7 @@ class Profile extends React.Component{
         }
         fetch((url+id), options)
             .then(resp=> resp.json())
-            .then(data=> console.log(data))
+            .then(data=> ()=>this.props.setUser())
     }
 
     componentDidMount=()=>{
@@ -40,8 +40,8 @@ class Profile extends React.Component{
         return(
             <>
             {this.props.current_user ? 
-            <div> 
-            <ReadUser current_user={this.props.current_user} />
+            <div id='profile'> 
+            <ReadUser current_user={this.props.current_user} setUser={this.props.setUser} />
             </div>    
                 : <h2>loading</h2>}
             </>
