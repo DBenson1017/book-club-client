@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+#root {
+  background-color: #eaf4f4;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #eaf4f4;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +39,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.library {
+  background-color: #eaf4f4;
+}
+
+.book-card {
+  background-color: #eaf4f4;
+  padding: 10px;
+}
+
+#book-card-info{
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.pop-form {
+ 
 }

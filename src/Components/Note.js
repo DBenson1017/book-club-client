@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon, Button, Container, Message, Input } from 'semantic-ui-react'
 
 class Note extends React.Component {
 
@@ -47,20 +48,26 @@ class Note extends React.Component {
 
     showEditForm=()=>{
         this.setState({
-            edit: true,
+            edit: !this.state.edit,
         })
     }
 
     render(){
         return(
             <div className='note' >
-                <h2>{this.props.note.note_content}</h2>
-                <button onClick={this.showEditForm}>Edit Note</button>
-                <button onClick={this.deleteNote}>Delete Note</button>
+                <Message>
+                    <p>
+                    {this.props.note.note_content}
+                    </p> 
+                </Message>
+                <Button basic circular compact onClick={this.showEditForm}><Icon name='edit'/></Button>
+                <Button basic circular compact onClick={this.deleteNote}>
+                    <Button.Content visible><Icon name='delete'/>
+                </Button.Content></Button>
 
                 {this.state.edit?
                 <form className='edit-form' onSubmit={this.submitHandler}>
-                <input onChange={this.changeHandler} name='note_content' placeholder={this.props.note.note_content} type='text' value={this.state.note_content}/><br></br>                  
+                <Input onChange={this.changeHandler} name='note_content' placeholder={this.props.note.note_content} type='text' value={this.state.note_content}/><br></br>                  
                 <input type='submit' value='Submit'/>
                 </form>:
                 null}
