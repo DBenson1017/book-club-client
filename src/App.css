@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+#root {
+  background-color:#fff1e6ff;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +39,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.library {
+  background-color: EDDCD2;
+}
+
+.book-card {
+  background-color: #fff1e6ff;
+  border-style: solid;
+}
+
+.pop-form {
+  border-style: solid;
 }

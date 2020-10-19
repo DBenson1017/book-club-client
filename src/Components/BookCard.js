@@ -1,7 +1,7 @@
 import React from 'react';
 import Note from '../Components/Note'
 import Review from '../Components/Review'
-import { Card, Icon, Image, Button, Container, Grid, Header, Reveal } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Container, Grid, Header, Input } from 'semantic-ui-react'
 
 class BookCard extends React.Component{
 
@@ -16,12 +16,12 @@ class BookCard extends React.Component{
 
     showNoteField=()=>{
         this.setState({ 
-            addNote: true
+            addNote: !this.state.addNote
         })
     }
     showReviewField=()=>{
         this.setState({ 
-            addReview: true
+            addReview: !this.state.addReview
         })
     }
     changeHandler=(e)=>{
@@ -46,6 +46,7 @@ class BookCard extends React.Component{
         fetch('http://localhost:3000/notes', options)
             .then(resp=>resp.json())
             .then(data=>this.addNoteToState(data))
+            this.showNoteField()
     }
     addNoteToState=(note)=>{
         this.setState({notes: [...this.state.notes, note]})
@@ -76,6 +77,7 @@ class BookCard extends React.Component{
         fetch('http://localhost:3000/reviews', options)
             .then(resp=>resp.json())
             .then(data=>this.addReviewToState(data))
+            this.showReviewField()
     }
     addReviewToState=(review)=>{
         this.setState({reviews: [...this.state.reviews, review]})
@@ -118,18 +120,27 @@ class BookCard extends React.Component{
     render(){
         return(
             <>
-            <Container> 
+            <Container className='book-card'> 
             {this.props.book?   
                 <Grid columns={2}>
-                    <Grid.Column> 
-                        <Header as='h3'>{this.props.book.title}</Header>
+                    <Grid.Column textAlign='center'> 
+                        <Header as='h2'>{this.props.book.title}</Header>
                         <Header as='h3'>{this.props.book.author }</Header>
-                        <Image src={this.props.book.img}  href={this.props.book.link} target='_blank'/>
-                        <Button onClick={this.showNoteField}>Add Note</Button>
-                        <Button onClick={this.showReviewField}>Add Review</Button>
-                        <Button onClick={this.deleteBookFromLibrary}>Remove from Library</Button>
+                        <Image src={this.props.book.img}  href={this.props.book.link} target='_blank' /><br></br>
+                        <Button animated='arrow right' onClick={this.showNoteField} fluid>
+                            <Button.Content visible><Icon name='edit'/></Button.Content>
+                            <Button.Content hidden>Add a note</Button.Content>  
+                        </Button><br></br>
+                        <Button animated='arrow right' onClick={this.showReviewField} fluid>
+                            <Button.Content visible><Icon name='star'/></Button.Content>
+                            <Button.Content hidden>Add a review</Button.Content>  
+                        </Button><br></br>
+                        <Button animated='arrow right' onClick={this.deleteBookFromLibrary} fluid>
+                            <Button.Content visible><Icon name='delete'/></Button.Content>
+                            <Button.Content hidden>Remove Book</Button.Content>  
+                        </Button><br></br>      
                     </Grid.Column>
-                    <Grid.Column>
+                    <Grid.Column textAlign='center'>
                     {this.state.notes.length>0 ? 
                     <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
                     {this.state.reviews.length>0 ? 
@@ -140,20 +151,20 @@ class BookCard extends React.Component{
                 null 
             }
             </Container>
-            <Container>
+            <Container className='pop-form'>
             {this.state.addNote?        
                 <form className='add-form' onSubmit={this.noteSubmit}>
-                <input onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
+                <Input fluid onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
                 <input type='submit' value='Submit'/>
                 </form>
                 :
                 null}
             </Container>
-            <Container>
+            <Container className='pop-form'>
             {this.state.addReview?
                 <form className='add-form' onSubmit={this.reviewSubmit}>
-                <input onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
-                <input onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
+                <Input fluid onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
+                <Input fluid onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
                 <input type='submit' value='Submit'/>
                 </form>:
                 null}
