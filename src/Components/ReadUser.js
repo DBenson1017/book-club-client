@@ -1,5 +1,6 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react'
+import { Segment, Container, Icon, Input, Button } from 'semantic-ui-react'
+
 
 class ReadUser extends React.Component{
 
@@ -55,7 +56,7 @@ class ReadUser extends React.Component{
         }
         fetch(baseUrl+id , options)
             .then(resp=>resp.json())
-            .then(data=> console.log(data))
+            .then(data=> this.props.setUser())
     }
 
     deleteUser=()=>{
@@ -79,30 +80,39 @@ class ReadUser extends React.Component{
             <> 
             {this.props.current_user?
             <div>
-            <Segment>
+            <Segment textAlign='center' id='welcome'>
             <h2> Welcome {this.props.current_user.first_name}!</h2>               
             </Segment>
 
-            <Segment raised vertical  textAlign='left'>
+            
+
+            <Segment raised vertical  textAlign='center'>
+                <Container >
                 <h3>First Name: {this.props.current_user.first_name} </h3>
                 <h3>Last Name: {this.props.current_user.last_name} </h3>
                 <h3>Email: {this.props.current_user.email} </h3>
                 <h3>Username: {this.props.current_user.username} </h3>
                 <button onClick={this.showEditForm}>Edit Profile</button> 
                 <button onClick={this.deleteUser}>Delete Profile</button> 
+
+                </Container>
             </Segment>
+
             </div>
             :
             <h3>loading... please login</h3>               
             }
             {this.state.edit ? 
+            <Segment textAlign='center' id='edit-profile'> 
             <form id='edit-profile-form' onSubmit={this.dataManager}>
-                <input onChange={this.changeHandler} name='first_name' placeholder={this.props.current_user.first_name} type='text' value={this.state.first_name} /> <br></br>      
-                <input onChange={this.changeHandler} name='last_name' placeholder={this.props.current_user.last_name} type='text' value={this.state.last_name} /><br></br>       
-                <input onChange={this.changeHandler} name='username' placeholder={this.props.current_user.username} type='text' value={this.state.username}/><br></br>            
-                <input onChange={this.changeHandler} name='email' placeholder={this.props.current_user.email} type='text' value={this.state.email}/><br></br>           
+                <Input onChange={this.changeHandler} name='first_name' placeholder={this.props.current_user.first_name} type='text' value={this.state.first_name} /> <br></br>      
+                <Input onChange={this.changeHandler} name='last_name' placeholder={this.props.current_user.last_name} type='text' value={this.state.last_name} /><br></br>       
+                <Input onChange={this.changeHandler} name='username' placeholder={this.props.current_user.username} type='text' value={this.state.username}/><br></br>            
+                <Input onChange={this.changeHandler} name='email' placeholder={this.props.current_user.email} type='text' value={this.state.email}/><br></br>           
                 <input type='submit' value='Submit'/>
             </form>
+
+            </Segment>
             :
             null 
             }
