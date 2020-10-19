@@ -1,7 +1,7 @@
 import React from 'react';
 import Note from '../Components/Note'
 import Review from '../Components/Review'
-import { Card, Icon, Image, Button, Container, Grid, Header, Input } from 'semantic-ui-react'
+import { Card, Icon, Image, Button, Container, Grid, Header, Input, Divider } from 'semantic-ui-react'
 
 class BookCard extends React.Component{
 
@@ -120,6 +120,7 @@ class BookCard extends React.Component{
             <>
             {this.props.book?   
             <Container className='book-card'> 
+            <Divider id='library-divider' horizontal>{this.props.book.title}</Divider>
                         <Header textAlign='center' as='h2'>{this.props.book.title}</Header>
                         <Header textAlign='center' as='h3'>{this.props.book.author }</Header>
                  <Grid columns={2}>

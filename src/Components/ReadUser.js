@@ -1,5 +1,6 @@
 import React from 'react';
-import { Segment, Container } from 'semantic-ui-react'
+import { Segment, Container, Icon, Input, Button } from 'semantic-ui-react'
+
 
 class ReadUser extends React.Component{
 
@@ -79,7 +80,7 @@ class ReadUser extends React.Component{
             <> 
             {this.props.current_user?
             <div>
-            <Segment textAlign='center' >
+            <Segment textAlign='center' id='welcome'>
             <h2> Welcome {this.props.current_user.first_name}!</h2>               
             </Segment>
 
@@ -102,13 +103,16 @@ class ReadUser extends React.Component{
             <h3>loading... please login</h3>               
             }
             {this.state.edit ? 
+            <Segment textAlign='center' id='edit-profile'> 
             <form id='edit-profile-form' onSubmit={this.dataManager}>
-                <input onChange={this.changeHandler} name='first_name' placeholder={this.props.current_user.first_name} type='text' value={this.state.first_name} /> <br></br>      
-                <input onChange={this.changeHandler} name='last_name' placeholder={this.props.current_user.last_name} type='text' value={this.state.last_name} /><br></br>       
-                <input onChange={this.changeHandler} name='username' placeholder={this.props.current_user.username} type='text' value={this.state.username}/><br></br>            
-                <input onChange={this.changeHandler} name='email' placeholder={this.props.current_user.email} type='text' value={this.state.email}/><br></br>           
+                <Input onChange={this.changeHandler} name='first_name' placeholder={this.props.current_user.first_name} type='text' value={this.state.first_name} /> <br></br>      
+                <Input onChange={this.changeHandler} name='last_name' placeholder={this.props.current_user.last_name} type='text' value={this.state.last_name} /><br></br>       
+                <Input onChange={this.changeHandler} name='username' placeholder={this.props.current_user.username} type='text' value={this.state.username}/><br></br>            
+                <Input onChange={this.changeHandler} name='email' placeholder={this.props.current_user.email} type='text' value={this.state.email}/><br></br>           
                 <input type='submit' value='Submit'/>
             </form>
+
+            </Segment>
             :
             null 
             }
