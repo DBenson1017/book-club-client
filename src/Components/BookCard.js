@@ -110,10 +110,10 @@ class BookCard extends React.Component{
             }}
 
         fetch(baseUrl+id, options)
-        //dispatch to removee from store
-
-
+        .then(resp=> console.log(resp))
+        .then(this.props.setUser())
     }
+
 
     render(){
         return(
