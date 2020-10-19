@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon, Button, Container, Message, Input } from 'semantic-ui-react'
 
 class Review extends React.Component {
 
@@ -16,7 +17,7 @@ class Review extends React.Component {
 
     showEditForm=()=>{
         this.setState({
-            edit: true,
+            edit: !this.state.edit
         })
     }
 
@@ -66,10 +67,12 @@ class Review extends React.Component {
     render(){
         return(
             <div className='review'>
-            <h2>Stars: {this.props.review.star_rating}</h2>
-            <h2>{this.props.review.review_content}</h2>
-            <button onClick={this.showEditForm}>Edit Review</button>
-            <button onClick={this.deleteReview}>Delete Review</button>
+                <Message>
+                    <p>{this.props.review.star_rating}<Icon name='star'/></p>
+                    <p>{this.props.review.review_content}</p>
+                </Message>
+            <Button basic circular compact onClick={this.showEditForm}>Edit Review</Button>
+            <Button basic circular compact onClick={this.deleteReview}>Delete Review</Button>
 
             {this.state.edit?
             <form className='edit-form' onSubmit={this.dataManager}>

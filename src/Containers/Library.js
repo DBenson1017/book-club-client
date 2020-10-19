@@ -17,7 +17,7 @@ class Library extends React.Component{
 
     render(){
         return(
-            <div classnames='library'>
+            <div class='library'>
             {this.props.state.current_user?
             this.generateBooks():
             <h3>Loading...</h3>

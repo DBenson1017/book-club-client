@@ -115,43 +115,43 @@ class BookCard extends React.Component{
         .then(resp=> console.log(resp))
         .then(this.props.setUser())
     }
-
-
     render(){
         return(
             <>
-            <Container className='book-card'> 
             {this.props.book?   
-                <Grid columns={2}>
+            <Container className='book-card'> 
+                        <Header textAlign='center' as='h2'>{this.props.book.title}</Header>
+                        <Header textAlign='center' as='h3'>{this.props.book.author }</Header>
+                 <Grid columns={2}>
                     <Grid.Column textAlign='center'> 
-                        <Header as='h2'>{this.props.book.title}</Header>
-                        <Header as='h3'>{this.props.book.author }</Header>
-                        <Image src={this.props.book.img}  href={this.props.book.link} target='_blank' /><br></br>
-                        <Button animated='arrow right' onClick={this.showNoteField} fluid>
-                            <Button.Content visible><Icon name='edit'/></Button.Content>
+                    <Card centered background-color='#f8edeb'>
+                        <Image src={this.props.book.img}  href={this.props.book.link} target='_blank'/>
+                    </Card>
+                    <Button animated='arrow right' onClick={this.showNoteField}>
+                            <Button.Content visible><Icon name='write'/></Button.Content>
                             <Button.Content hidden>Add a note</Button.Content>  
-                        </Button><br></br>
-                        <Button animated='arrow right' onClick={this.showReviewField} fluid>
+                        </Button>
+                        <Button color='#f8edeb' animated='arrow right' onClick={this.showReviewField}>
                             <Button.Content visible><Icon name='star'/></Button.Content>
                             <Button.Content hidden>Add a review</Button.Content>  
-                        </Button><br></br>
-                        <Button animated='arrow right' onClick={this.deleteBookFromLibrary} fluid>
+                        </Button>
+                        <Button animated='arrow right' onClick={this.deleteBookFromLibrary}>
                             <Button.Content visible><Icon name='delete'/></Button.Content>
                             <Button.Content hidden>Remove Book</Button.Content>  
-                        </Button><br></br>      
+                        </Button> 
                     </Grid.Column>
-                    <Grid.Column textAlign='center'>
+                    <Grid.Column id='book-card-info' textAlign='center'>
                     {this.state.notes.length>0 ? 
-                    <h3>{this.generateNote()}</h3>:<h3>no notes yet</h3>}
-                    {this.state.reviews.length>0 ? 
-                    <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>}
+                    <h3>{this.generateNote()}</h3>:<h3>Add your first note!</h3>}
+                    {/* {this.state.reviews.length>0 ? 
+                    <h3>{this.generateReview()}</h3>:<h3>no reviews yet</h3>} */}
                     </Grid.Column>
                 </Grid>
+            </Container>
                 :
                 null 
             }
-            </Container>
-            <Container className='pop-form'>
+                <Container className='pop-form'>
             {this.state.addNote?        
                 <form className='add-form' onSubmit={this.noteSubmit}>
                 <Input fluid onChange={this.changeHandler} name='note_content' placeholder='enter note' type='text' value={this.state.note_content}/><br></br>                  
