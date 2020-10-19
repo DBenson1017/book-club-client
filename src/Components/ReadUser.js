@@ -92,12 +92,12 @@ class ReadUser extends React.Component{
                 <h3>Last Name: {this.props.current_user.last_name} </h3>
                 <h3>Email: {this.props.current_user.email} </h3>
                 <h3>Username: {this.props.current_user.username} </h3>
-                <button onClick={this.showEditForm}>Edit Profile</button> 
-                <button onClick={this.deleteUser}>Delete Profile</button> 
-
+                <Button basic circular compact onClick={this.showEditForm}><Icon name='edit'/></Button>
+                <Button basic circular compact onClick={this.deleteUser}>
+                    <Button.Content visible><Icon name='delete'/>
+                </Button.Content></Button>
                 </Container>
             </Segment>
-
             </div>
             :
             <h3>loading... please login</h3>               

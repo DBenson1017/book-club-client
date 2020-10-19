@@ -12,7 +12,7 @@ class Users extends React.Component {
 
     
     generateUserCards=()=>{
-       return  this.props.users.map((user) => <UserCard user={user}/>)
+       return  this.props.users.map((user) => <UserCard user={user} currentUser={this.props.currentUser}/>)
     }
 
     render(){
