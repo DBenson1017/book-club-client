@@ -8,7 +8,6 @@ export const fetchUsers=()=>{
             }))
     }
 }
-
 export const fetchBooks=()=>{
     return function(dispatch){
         fetch('http://localhost:3000/books')
@@ -19,14 +18,12 @@ export const fetchBooks=()=>{
             }))
     }
 }
-
 export const createUser=(data)=>{  
     return {
             type: 'CREATE_USER',
             payload: data
             }
-    }
-
+}
 export const getUser=(userId)=>{
     let baseUrl = 'http://localhost:3000/users/'
     let id = userId 
@@ -39,7 +36,6 @@ export const getUser=(userId)=>{
             }))
     }
 }
-
 export const setUser=(newId)=>{
     let baseUrl = 'http://localhost:3000/users/'
     let id = newId 
