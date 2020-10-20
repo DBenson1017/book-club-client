@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios'
 import Results from '../Components/Results'
 import {connect} from 'react-redux'
-import { Container, Button, Divider } from 'semantic-ui-react'
+import { Container, Button, Divider, Input } from 'semantic-ui-react'
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 
 class Search extends React.Component{
@@ -87,8 +87,8 @@ makeBook=(data)=>{
             <Container textAlign='center'>
                 <form onSubmit={this.submitHandler}> 
                     <div className='form-group'>
-                    <input onChange={this.handleChange} type='text'  placeholder='search by book title'/>
-                    <button type='submit'>Search</button>
+                    <Input onChange={this.handleChange} type='text'  placeholder='search by book title'/>
+                    <Button type='submit'>Search</Button>
                     </div>
                 </form>
                 

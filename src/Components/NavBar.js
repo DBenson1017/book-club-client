@@ -14,8 +14,8 @@ function NavBar() {
             <NavLink to='/library'>
                 <span>Library</span>
             </NavLink>
-            <NavLink to='/users'>
-                <span>Community</span>
+            <NavLink to='/recommendations'>
+                <span>Recommendations</span>
             </NavLink>
             <NavLink to='/books'>
                 <span>Community Books</span>

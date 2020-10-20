@@ -50,7 +50,7 @@ class App extends React.Component {
       <Credentials makeUser={this.makeUser}/>} />
       <Route path='/search' render={()=> <Search makeBook={this.makeBook}/>} />
       <Route path='/profile' render={()=> <Profile />} />
-      <Route path='/users' render={()=> <Users />} />
+      <Route path='/recommendations' render={()=> <Users currentUser={this.props.state.currentUser} />} />
       <Route path='/books' render={()=> <Books />} />
       <Route path='/library' render={()=> <Library />} />
       </div>
