@@ -2,6 +2,7 @@ import React from 'react';
 import Note from '../Components/Note'
 import Review from '../Components/Review'
 import { Card, Icon, Image, Button, Container, Grid, Header, Input, Divider } from 'semantic-ui-react'
+import {connect} from 'react-redux'
 
 class BookCard extends React.Component{
 
@@ -112,7 +113,8 @@ class BookCard extends React.Component{
             }}
         fetch(baseUrl+id, options)
         .then(resp=> console.log(resp))
-        .then(this.props.setUser())
+        .then(data=> console.log('in deleteBookFromLibrary'))
+        .then(this.props.getUser(this.props.user_id))
     }
     render(){
         return(
@@ -173,4 +175,7 @@ class BookCard extends React.Component{
 }
 }
 export default BookCard
+
+
+
 

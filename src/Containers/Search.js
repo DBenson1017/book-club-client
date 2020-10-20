@@ -73,6 +73,7 @@ addBookToLibrary=(newBook)=>{
       .then(resp=> resp.json())
       .then(data => {
         console.log(data)
+        
         this.props.history.push('/library')
       })
 }
