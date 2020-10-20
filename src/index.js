@@ -21,6 +21,9 @@ const rootReducer=(currentState={}, action)=> {
     case 'FETCH_BOOKS': return {
       ...currentState, books: action.payload
     }
+    case 'CREATE_USER': return {
+      ...currentState, current_user: action.payload
+    }
   }
   //default return
   return {

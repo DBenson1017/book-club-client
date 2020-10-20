@@ -20,9 +20,31 @@ export const fetchBooks=()=>{
     }
 }
 
-export const setUser=()=>{
+export const createUser=(data)=>{  
+    return {
+            type: 'CREATE_USER',
+            payload: data
+            }
+    }
+
+export const getUser=(userId)=>{
+    let baseUrl = 'http://localhost:3000/users/'
+    let id = userId 
     return function(dispatch){
-        fetch('http://localhost:3000/users/23')
+        fetch(baseUrl + id)
+            .then(resp=> resp.json())      
+            .then(data=> dispatch({
+                type: 'SET_USER',
+                payload: data
+            }))
+    }
+}
+
+export const setUser=(newId)=>{
+    let baseUrl = 'http://localhost:3000/users/'
+    let id = newId 
+    return function(dispatch){
+        fetch(baseUrl + id)
             .then(resp=> resp.json())
             .then(data=> dispatch({
                 type: 'SET_USER',

@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {setUser} from './actions'
+import {setUser, createUser, getUser} from './actions'
 import { Segment, Divider } from 'semantic-ui-react'
 
 import Search from './Containers/Search'
@@ -33,11 +33,20 @@ class App extends React.Component {
     .then(data => {
       console.log(data)
       this.props.history.push('/search')
+      this.props.createUser(data)
+      localStorage.setItem('user_id', data.id)
     })
 }
+
   componentDidMount=()=>{
-    this.props.setUser()
+    const userId = localStorage.getItem("user_id")
+    if (userId !== undefined){
+          this.props.getUser(userId)
+    } else {
+      this.props.history.push('/credentials')
+    }
 }
+
   render(){
     console.log(this.props.state)
     return (
@@ -67,7 +76,11 @@ const msp=(state)=>{
 }
 
 const mdp=(dispatch)=>{
-  return {setUser: ()=> dispatch(setUser())}
+  return {
+    setUser: ()=> dispatch(setUser()),
+    createUser: (data)=>dispatch(createUser(data)), 
+    getUser: (userId)=>dispatch(getUser(userId))
+  }
 }
 
 export default withRouter(connect(msp, mdp)(App))
