@@ -30,9 +30,11 @@ class App extends React.Component {
     }
     fetch('http://localhost:3000/users', options)
     .then(resp=> resp.json())
-    .then(newBook => console.log(newBook))
-    // shoudl redirect or send new History to profile page? 
-  }
+    .then(data => {
+      console.log(data)
+      this.props.history.push('/search')
+    })
+}
   componentDidMount=()=>{
     this.props.setUser()
 }
@@ -68,4 +70,4 @@ const mdp=(dispatch)=>{
   return {setUser: ()=> dispatch(setUser())}
 }
 
-export default connect(msp, mdp)(App)
+export default withRouter(connect(msp, mdp)(App))

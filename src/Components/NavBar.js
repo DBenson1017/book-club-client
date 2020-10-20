@@ -5,6 +5,9 @@ import { Segment, Divider } from 'semantic-ui-css'
 function NavBar() {
     return (
             <div id='header'>
+            <NavLink to='/credentials'>
+                <span>Login</span>
+            </NavLink>
             <NavLink to='/profile'>
                 <span>Profile</span>
             </NavLink>
