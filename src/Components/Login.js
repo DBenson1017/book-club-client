@@ -18,7 +18,21 @@ class Login extends React.Component {
     submitHandler=(e)=>{
         console.log('cleard heard in Login submitHandler', this.state)
         e.preventDefault()
-        //call function to auth#create
+        let data = {
+            username: this.state.username, 
+            password_digest: this.state.password_digest
+        }
+        let options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+        fetch('http://localhost:3000/login', options)
+            .then(resp=> resp.json())
+            .then(data=> console.log(data))
     }
 
     render(){
@@ -41,7 +55,9 @@ const msp=(state)=>{
 }
 
 const mdp=(dispatch)=>{
-    return {fetchUsers: ()=> dispatch(fetchUsers())}
+    return {fetchUsers: ()=> dispatch(fetchUsers())
+    
+    }
 }
 
 export default connect(msp, mdp)(Login)

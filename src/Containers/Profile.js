@@ -32,7 +32,7 @@ class Profile extends React.Component{
     }
 
     componentDidMount=()=>{
-        this.props.setUser()
+        // this.props.setUser()
     }
 
     render(){

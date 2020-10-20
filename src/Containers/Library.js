@@ -2,25 +2,33 @@ import React from 'react';
 import {connect} from 'react-redux'
 import BookCard from '../Components/BookCard'
 import {setUser} from '../actions'
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 
 
 class Library extends React.Component{
 
     componentDidMount=()=>{
-        this.props.setUser()
+        console.log(this.props.state.current_user)
+        if (!this.props.state.current_user){
+            this.props.history.push('/credentials')
+        }
     }
 
     generateBooks=()=>{
         return (this.props.state.current_user.books.map(book=> 
-            <BookCard book={book} user_id={this.props.state.current_user.id} setUser={this.props.setUser} /> ))
+        <BookCard book={book} user_id={this.props.state.current_user.id} setUser={this.props.setUser}/> ))
     }
 
     render(){
+        console.log(this.props.state)
         return(
             <div class='library'>
             {this.props.state.current_user?
-            this.generateBooks():
-            <h3>Loading...</h3>
+                this.props.state.current_user.books.length>0?
+                    this.generateBooks():
+                    <h3>No books added yet!</h3> 
+                    :
+                    <h3>Loading...</h3> 
             }
             </div>
         )}
@@ -35,4 +43,4 @@ const mdp=(dispatch)=>{
     return {setUser: ()=> dispatch(setUser())}
 }
 
-export default connect(msp, mdp)(Library)
+export default connect(msp, mdp)(withRouter(Library))
