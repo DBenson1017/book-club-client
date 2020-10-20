@@ -30,9 +30,12 @@ submitHandler=(data)=>{
         .then(data=> this.props.createUser(data))
 }
 
-// componentDidMount=()=>{
-//     // this.props.setUser()
-// }
+componentDidMount=()=>{
+    const userId = localStorage.getItem("user_id")
+    if (userId === undefined){
+        this.props.history.push('/credentials')
+    }
+} 
 
 render(){
     console.log(this.props.current_user)

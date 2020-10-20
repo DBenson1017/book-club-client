@@ -110,7 +110,6 @@ class BookCard extends React.Component{
                 'content-type': 'application/json',
                 'accept': 'application/json'
             }}
-
         fetch(baseUrl+id, options)
         .then(resp=> console.log(resp))
         .then(this.props.setUser())

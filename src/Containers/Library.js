@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import BookCard from '../Components/BookCard'
 import {setUser} from '../actions'
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 
 class Library extends React.Component{
