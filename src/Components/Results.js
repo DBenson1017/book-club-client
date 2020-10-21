@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Segment, Grid, Table} from 'semantic-ui-react'
+import { Image, Button, Segment, Grid, Table, Label} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 
 class Results extends React.Component{
@@ -25,7 +25,10 @@ class Results extends React.Component{
                 <Grid columns={2}>
                     <Grid.Column>
                 {this.props.book.volumeInfo.imageLinks?.thumbnail ?  
-                <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank'/> :
+                <>
+                <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank'/><br></br>
+                <Label pointing='above' color='grey'>Click image to read an excerpt</Label> 
+                </>:
                 <Image  src='http://getwallpapers.com/wallpaper/full/2/1/9/699354-cute-dog-backgrounds-2560x2048-htc.jpg'/>
             }
 
