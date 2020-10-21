@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, Icon, Image, Button, Container, Segment, Divider, Grid, Table, Tab } from 'semantic-ui-react'
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import { Image, Button, Segment, Grid, Table} from 'semantic-ui-react'
+import {withRouter} from 'react-router-dom'
 
 class Results extends React.Component{
 

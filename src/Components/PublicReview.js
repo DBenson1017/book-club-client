@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Container, Icon, Button } from 'semantic-ui-react'
+import { Segment, Icon, Button } from 'semantic-ui-react'
 
 class PublicReview extends React.Component {
 

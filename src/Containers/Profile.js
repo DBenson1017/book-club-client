@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {setUser, createUser} from '../actions'
 import ReadUser from '../Components/ReadUser'
+import {withRouter} from 'react-router-dom'
 
 
 class Profile extends React.Component{
@@ -31,11 +32,11 @@ submitHandler=(data)=>{
 }
 
 componentDidMount=()=>{
-    const userId = localStorage.getItem("user_id")
-    if (userId === undefined){
-        this.props.history.push('/credentials')
+    console.log(this.props.current_user)
+    if (!this.props.current_user){
+        this.props.history.push('/')
     }
-} 
+}
 
 render(){
     console.log(this.props.current_user)
@@ -45,7 +46,10 @@ render(){
             <div id='profile'> 
             <ReadUser current_user={this.props.current_user} editUser={this.submitHandler}/>
             </div>    
-            :<h2>loading</h2>}
+            :
+            <h2>loading</h2>
+            
+            }
         </>
     )
 }
@@ -63,5 +67,7 @@ const mdp=(dispatch)=>{
     }
 }
 
-export default connect(msp, mdp)(Profile)
+
+
+export default connect(msp, mdp)(withRouter(Profile))
 

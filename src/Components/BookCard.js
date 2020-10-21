@@ -2,7 +2,7 @@ import React from 'react';
 import Note from '../Components/Note'
 import Review from '../Components/Review'
 import { Card, Icon, Image, Button, Container, Grid, Header, Input, Divider } from 'semantic-ui-react'
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 
 class BookCard extends React.Component{
 
@@ -92,11 +92,11 @@ class BookCard extends React.Component{
 
     generateReview=()=>{
         return this.state.reviews.map(review => 
-            <Review review={review} remove={this.removeReviewFromState}/>
+            <Review review={review} key={review.id} remove={this.removeReviewFromState}/>
         )}
     generateNote=()=>{
             return this.state.notes.map(note => 
-                <Note note={note} remove={this.removeNoteFromState}/>
+                <Note note={note} key={note.id} remove={this.removeNoteFromState}/>
             )}
 
     deleteBookFromLibrary=()=>{
@@ -126,14 +126,14 @@ class BookCard extends React.Component{
                         <Header textAlign='center' as='h3'>{this.props.book.author }</Header>
                  <Grid columns={2}>
                     <Grid.Column textAlign='center'> 
-                    <Card centered background-color='#f8edeb'>
+                    <Card centered >
                         <Image src={this.props.book.img}  href={this.props.book.link} target='_blank'/>
                     </Card>
                     <Button animated='arrow right' onClick={this.showNoteField}>
                             <Button.Content visible><Icon name='write'/></Button.Content>
                             <Button.Content hidden>Add a note</Button.Content>  
                         </Button>
-                        <Button color='#f8edeb' animated='arrow right' onClick={this.showReviewField}>
+                        <Button  animated='arrow right' onClick={this.showReviewField}>
                             <Button.Content visible><Icon name='star'/></Button.Content>
                             <Button.Content hidden>Add a review</Button.Content>  
                         </Button>

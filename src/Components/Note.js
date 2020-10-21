@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Button, Container, Message, Input } from 'semantic-ui-react'
+import { Icon, Button, Message, Input } from 'semantic-ui-react'
 
 class Note extends React.Component {
 
