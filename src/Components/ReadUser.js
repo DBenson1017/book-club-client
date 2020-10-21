@@ -70,7 +70,7 @@ class ReadUser extends React.Component{
             </Segment>
 
             <Segment raised vertical  textAlign='center'>
-                <Container >
+                <Container>
                 <h3>First Name: {this.props.current_user.first_name} </h3>
                 <h3>Last Name: {this.props.current_user.last_name} </h3>
                 <h3>Email: {this.props.current_user.email} </h3>
