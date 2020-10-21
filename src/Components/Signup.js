@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class Signup extends React.Component{

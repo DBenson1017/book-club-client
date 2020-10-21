@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import axios from 'axios'
 import {createStore, applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -24,10 +23,9 @@ const rootReducer=(currentState={}, action)=> {
     case 'CREATE_USER': return {
       ...currentState, current_user: action.payload
     }
-  }
-  //default return
-  return {
+    default: return {
     currentState
+    }
   }
 }
 

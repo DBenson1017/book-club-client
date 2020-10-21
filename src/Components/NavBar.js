@@ -1,12 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
-import { Segment, Divider } from 'semantic-ui-css'
 
-function NavBar() {
+class NavBar extends React.Component{
+
+render(){
+
     return (
             <div id='header'>
-            <NavLink to='/credentials'>
-                <span>Login</span>
+            <NavLink to='/'>
+                <span>Login/Logout</span>
             </NavLink>
             <NavLink to='/profile'>
                 <span>Profile</span>
@@ -25,6 +27,7 @@ function NavBar() {
             </NavLink>
             </div>
     )
+}
 
 }
 

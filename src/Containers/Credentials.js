@@ -1,12 +1,21 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import {setUser, createUser, getUser} from '../actions'
 import Signup from '../Components/Signup'
 import Login from '../Components/Login'
-import { Grid, Segment, Divider } from 'semantic-ui-react'
+import { Grid, Segment, Divider, Button, Container } from 'semantic-ui-react'
 
 class Credentials extends React.Component{
 
+    logoutUser=()=>{
+        console.log('logoutUser', localStorage)
+        localStorage.clear()
+        console.log('logoutUser', localStorage)
+    }
+
     render(){
         return (
+            <>
             <Segment>
                 <Grid columns={2} stackable textAlign='center'>
                     <Grid.Column>
@@ -19,7 +28,25 @@ class Credentials extends React.Component{
                 </Grid>
                 <Divider vertical>OR</Divider>
             </Segment>
+                <Container textAlign='center'>
+                <Button onClick={this.logoutUser} >Logout</Button>
+                </Container>
+            </>
         )
     }
 }
-export default Credentials
+
+const msp=(state)=>{
+    console.log('Redux state', state)
+    return {state: state}
+  }
+  
+  const mdp=(dispatch)=>{
+    return {
+      setUser: ()=> dispatch(setUser()),
+      createUser: (data)=>dispatch(createUser(data)), 
+      getUser: (userId)=>dispatch(getUser(userId))
+    }
+  }
+  
+  export default connect(msp, mdp)(Credentials)

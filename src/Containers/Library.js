@@ -10,19 +10,19 @@ class Library extends React.Component{
     componentDidMount=()=>{
         console.log(this.props.state.current_user)
         if (!this.props.state.current_user){
-            this.props.history.push('/credentials')
+            this.props.history.push('/')
         }
     }
 
     generateBooks=()=>{
         return (this.props.state.current_user.books.map(book=> 
-        <BookCard book={book} user_id={this.props.state.current_user.id} getUser={this.props.getUser} setUser={this.props.setUser}/> ))
+        <BookCard book={book} key={book.id} user_id={this.props.state.current_user.id} getUser={this.props.getUser} setUser={this.props.setUser}/> ))
     }
 
     render(){
         console.log(this.props.state)
         return(
-            <div class='library'>
+            <div>
             {this.props.state.current_user?
                 this.props.state.current_user.books.length>0?
                     this.generateBooks():

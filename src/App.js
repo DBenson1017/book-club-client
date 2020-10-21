@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDom from 'react-dom'
+// import ReactDom from 'react-dom'
 import './App.css';
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import {Route, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setUser, createUser, getUser} from './actions'
-import { Segment, Divider } from 'semantic-ui-react'
+import { Divider } from 'semantic-ui-react'
 
 import Search from './Containers/Search'
 import Users from './Containers/Users'
@@ -13,6 +13,7 @@ import Profile from './Containers/Profile'
 import Books from './Containers/Books'
 import Library from './Containers/Library'
 import NavBar from './Components/NavBar'
+
 
 class App extends React.Component {
 
@@ -40,7 +41,7 @@ class App extends React.Component {
     if (userId !== undefined){
           this.props.getUser(userId)
     } else {
-      this.props.history.push('/credentials')
+      this.props.history.push('/')
     }
 }
   render(){
@@ -52,7 +53,7 @@ class App extends React.Component {
       <Divider horizontal>'Never trust anyone who has not brought a book with them'</Divider>
       </div>
       <div>
-      <Route path='/credentials' render={()=>
+      <Route exact path='/' render={()=>
       <Credentials makeUser={this.makeUser}/>} />
       <Route path='/search' render={()=> <Search makeBook={this.makeBook}/>} />
       <Route path='/profile' render={()=> <Profile />} />
