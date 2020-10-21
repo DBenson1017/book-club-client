@@ -2,7 +2,9 @@ import React from 'react';
 import Note from '../Components/Note'
 import Review from '../Components/Review'
 import { Card, Icon, Image, Button, Container, Grid, Header, Input, Divider } from 'semantic-ui-react'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
+import {setUser, getUser} from '../actions'
+import {withRouter} from 'react-router-dom'
 
 class BookCard extends React.Component{
 
@@ -113,7 +115,7 @@ class BookCard extends React.Component{
             }}
         fetch(baseUrl+id, options)
         .then(resp=> console.log(resp))
-        .then(data=> console.log('in deleteBookFromLibrary'))
+        .then(data=> console.log(data))
         .then(this.props.getUser(this.props.user_id))
     }
     render(){
@@ -174,8 +176,21 @@ class BookCard extends React.Component{
         </>)
 }
 }
-export default BookCard
 
+
+const msp=(state)=>{
+    console.log('Redux state', state)
+    return {state: state}
+  }
+
+const mdp=(dispatch)=>{
+    return {
+        setUser: ()=> dispatch(setUser()),
+        getUser: (userId)=>dispatch(getUser(userId))
+    }
+}
+
+export default connect(msp, mdp)(withRouter(BookCard))
 
 
 
