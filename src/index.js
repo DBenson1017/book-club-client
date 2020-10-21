@@ -23,6 +23,9 @@ const rootReducer=(currentState={}, action)=> {
     case 'CREATE_USER': return {
       ...currentState, current_user: action.payload
     }
+    case 'LOGOUT_USER': return {
+      ...currentState, current_user: {}
+    }
     default: return {
     currentState
     }
