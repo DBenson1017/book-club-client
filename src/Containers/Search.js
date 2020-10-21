@@ -3,6 +3,7 @@ import Results from '../Components/Results'
 import {connect} from 'react-redux'
 import { Container, Button, Divider, Input } from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
+import {getUser} from '../actions'
 
 class Search extends React.Component{
 
@@ -71,11 +72,9 @@ addBookToLibrary=(newBook)=>{
     }
     fetch('http://localhost:3000/book_users', options)
       .then(resp=> resp.json())
-      .then(data => {
-        console.log(data)
-        
-        this.props.history.push('/library')
-      })
+      .then(data => console.log(data))
+      .then( this.props.getUser(this.props.state.current_user.id))
+      .then(this.props.history.push('/library'))      
 }
 
 render(){
@@ -108,4 +107,11 @@ const msp=(state)=>{
     return {state: state}
 }
 
-export default withRouter(connect(msp)(Search))
+const mdp=(dispatch)=>{
+  return {
+      getUser: (userId)=>dispatch(getUser(userId))
+  }
+}
+
+
+export default withRouter(connect(msp, mdp)(Search))
