@@ -1,5 +1,6 @@
 import React from 'react';
 import { Segment, Container, Icon, Input, Button } from 'semantic-ui-react'
+import {withRouter} from 'react-router-dom'
 
 
 class ReadUser extends React.Component{
@@ -17,13 +18,11 @@ class ReadUser extends React.Component{
         [e.target.name]: e.target.value
     })
     }
-
     showEditForm=()=>{
         this.setState({
             edit: (!this.state.edit)
         })
     }
-
     dataManager=(e)=>{
         e.preventDefault()
         let data = {}
@@ -39,24 +38,7 @@ class ReadUser extends React.Component{
         if (this.state.email){
             data.email = this.state.email
         }
-        this.submitHandler(data)
-    }
-
-    submitHandler=(data)=>{
-        // console.log(data)
-        let baseUrl = 'http://localhost:3000/users/'
-        let id = this.props.current_user.id
-        let options = {
-            method: 'PATCH', 
-            headers: {
-                'content-type': 'application/json',
-                'accept': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }
-        fetch(baseUrl+id , options)
-            .then(resp=>resp.json())
-            .then(data=> this.props.setUser())
+        this.props.editUser(data)
     }
 
     deleteUser=()=>{
@@ -71,7 +53,9 @@ class ReadUser extends React.Component{
             }
         }
         fetch(baseUrl+id , options)
-        //redirect to credentials 
+        this.props.history.push('/credentials')
+        localStorage.clear()
+        window.location.reload()
     }
 
     render(){
@@ -83,8 +67,6 @@ class ReadUser extends React.Component{
             <Segment textAlign='center' id='welcome'>
             <h2> Welcome {this.props.current_user.first_name}!</h2>               
             </Segment>
-
-            
 
             <Segment raised vertical  textAlign='center'>
                 <Container >
@@ -102,6 +84,7 @@ class ReadUser extends React.Component{
             :
             <h3>loading... please login</h3>               
             }
+            
             {this.state.edit ? 
             <Segment textAlign='center' id='edit-profile'> 
             <form id='edit-profile-form' onSubmit={this.dataManager}>
@@ -121,4 +104,4 @@ class ReadUser extends React.Component{
     }
 }
 
-export default ReadUser
+export default withRouter(ReadUser)

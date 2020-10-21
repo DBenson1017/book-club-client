@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {setUser} from '../actions'
+import {setUser, createUser} from '../actions'
 import ReadUser from '../Components/ReadUser'
 
 
@@ -12,41 +12,43 @@ class Profile extends React.Component{
         username:''
     }
 
-    submitHandler=(e)=>{
-        //Patch fetch with this.state
-        //hide the edit form 
-        e.preventDefault()
-        let url = 'http://localhost:3000/users/'
-        let id = this.props.current_user[0]
-        let options = {
-            method: 'PATCH',
-            headers: { 
-                'Content-Type': 'application/',
-                'accept': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        }
-        fetch((url+id), options)
-            .then(resp=> resp.json())
-            .then(data=> ()=>this.props.setUser())
+submitHandler=(data)=>{
+    let url = 'http://localhost:3000/users/'
+    let id = this.props.current_user.id
+    console.log(id)
+    console.log(data)
+    let options = {
+        method: 'PATCH',
+        headers: { 
+            'Content-Type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify(data)
     }
+    fetch(url+id, options)
+        .then(resp=> resp.json())
+        .then(data=> this.props.createUser(data))
+}
 
-    componentDidMount=()=>{
-        // this.props.setUser()
+componentDidMount=()=>{
+    const userId = localStorage.getItem("user_id")
+    if (userId === undefined){
+        this.props.history.push('/credentials')
     }
+} 
 
-    render(){
-        console.log(this.props)
-        return(
-            <>
-            {this.props.current_user ? 
+render(){
+    console.log(this.props.current_user)
+    return(
+        <>
+            {this.props.current_user? 
             <div id='profile'> 
-            <ReadUser current_user={this.props.current_user} setUser={this.props.setUser} />
+            <ReadUser current_user={this.props.current_user} editUser={this.submitHandler}/>
             </div>    
-                : <h2>loading</h2>}
-            </>
-        )
-    }
+            :<h2>loading</h2>}
+        </>
+    )
+}
 }
 
 const msp=(state)=>{
@@ -55,7 +57,10 @@ const msp=(state)=>{
 }
 
 const mdp=(dispatch)=>{
-    return {setUser: ()=> dispatch(setUser())}
+    return {
+        setUser: ()=> dispatch(setUser()),
+        createUser: (data)=>dispatch(createUser(data))
+    }
 }
 
 export default connect(msp, mdp)(Profile)

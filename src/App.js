@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom'
-import logo from './logo.svg';
 import './App.css';
 import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -18,7 +17,6 @@ import NavBar from './Components/NavBar'
 class App extends React.Component {
 
   makeUser=(data)=>{
-    // gets data from Signup and performs POST request to /users
     console.log('click heard by makeUser in App', data)
     let options = {
       method: 'POST',
@@ -37,7 +35,6 @@ class App extends React.Component {
       localStorage.setItem('user_id', data.id)
     })
 }
-
   componentDidMount=()=>{
     const userId = localStorage.getItem("user_id")
     if (userId !== undefined){
@@ -46,12 +43,10 @@ class App extends React.Component {
       this.props.history.push('/credentials')
     }
 }
-
   render(){
     console.log(this.props.state)
     return (
       <>
-      {/* <Header /> */}
       <div>
       <NavBar />
       <Divider horizontal>'Never trust anyone who has not brought a book with them'</Divider>

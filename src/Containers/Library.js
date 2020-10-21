@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import BookCard from '../Components/BookCard'
-import {setUser} from '../actions'
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom'
+import {setUser, getUser} from '../actions'
+import {withRouter} from 'react-router-dom'
 
 
 class Library extends React.Component{
@@ -16,7 +16,7 @@ class Library extends React.Component{
 
     generateBooks=()=>{
         return (this.props.state.current_user.books.map(book=> 
-        <BookCard book={book} user_id={this.props.state.current_user.id} setUser={this.props.setUser}/> ))
+        <BookCard book={book} user_id={this.props.state.current_user.id} getUser={this.props.getUser} setUser={this.props.setUser}/> ))
     }
 
     render(){
@@ -40,7 +40,10 @@ const msp=(state)=>{
   }
 
 const mdp=(dispatch)=>{
-    return {setUser: ()=> dispatch(setUser())}
+    return {
+        setUser: ()=> dispatch(setUser()),
+        getUser: (userId)=>dispatch(getUser(userId))
+    }
 }
 
 export default connect(msp, mdp)(withRouter(Library))
