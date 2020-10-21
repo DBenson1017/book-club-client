@@ -68,7 +68,7 @@ class Note extends React.Component {
                 {this.state.edit?
                 <form className='edit-form' onSubmit={this.submitHandler}>
                 <Input onChange={this.changeHandler} name='note_content' placeholder={this.props.note.note_content} type='text' value={this.state.note_content}/><br></br>                  
-                <input type='submit' value='Submit'/>
+                <Input type='submit' value='Submit'/>
                 </form>:
                 null}
             </div>
