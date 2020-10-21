@@ -6,6 +6,7 @@ class NavBar extends React.Component{
 render(){
 
     return (
+        
             <div id='header'>
             <NavLink to='/'>
                 <span>Login/Logout</span>
