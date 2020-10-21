@@ -36,12 +36,6 @@ export const getUser=(userId)=>{
             }))
     }
 }
-
-
-
-
-
-
 export const setUser=(newId)=>{
     let baseUrl = 'http://localhost:3000/users/'
     let id = newId 
@@ -53,4 +47,9 @@ export const setUser=(newId)=>{
                 payload: data
             }))
     }
+}
+export const logoutUser=(data)=>{  
+    return {
+            type: 'LOGOUT_USER',
+            }
 }

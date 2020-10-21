@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {setUser, createUser, getUser} from '../actions'
+import {setUser, createUser, getUser, logoutUser} from '../actions'
 import Signup from '../Components/Signup'
 import Login from '../Components/Login'
 import { Grid, Segment, Divider, Button, Container } from 'semantic-ui-react'
@@ -11,6 +11,7 @@ class Credentials extends React.Component{
         console.log('logoutUser', localStorage)
         localStorage.clear()
         console.log('logoutUser', localStorage)
+        this.props.logoutUser()
     }
 
     render(){
@@ -45,6 +46,7 @@ const msp=(state)=>{
     return {
       setUser: ()=> dispatch(setUser()),
       createUser: (data)=>dispatch(createUser(data)), 
+      logoutUser: ()=>dispatch(logoutUser()),
       getUser: (userId)=>dispatch(getUser(userId))
     }
   }
