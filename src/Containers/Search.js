@@ -71,10 +71,12 @@ addBookToLibrary=(newBook)=>{
       body: JSON.stringify(data)
     }
     fetch('http://localhost:3000/book_users', options)
-      .then(this.props.history.push('/library'))      
-      .then(resp=> resp.json())
-      .then(data => console.log(data))
-      .then(this.props.getUser(this.props.state.current_user.id))
+    .then(resp=> resp.json())
+    .then(data =>{
+      console.log(data)
+      this.props.getUser(this.props.state.current_user.id)
+      this.props.history.push('/library')      
+   })
 }
 
 render(){

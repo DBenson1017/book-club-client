@@ -115,8 +115,10 @@ class BookCard extends React.Component{
             }}
         fetch(baseUrl+id, options)
         .then(resp=> console.log(resp))
-        .then(data=> console.log(data))
-        .then(this.props.getUser(this.props.user_id))
+        .then(data=> {
+            console.log(data)
+            this.props.getUser(this.props.user_id)
+        })
     }
     render(){
         return(

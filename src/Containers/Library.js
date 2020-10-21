@@ -24,7 +24,7 @@ class Library extends React.Component{
         return(
             <div>
             {this.props.state.current_user?
-                this.props.state.current_user.books.length>0?
+                this.props.state.current_user?.books?.length>0?
                     this.generateBooks():
                     <h3>No books added yet!</h3> 
                     :

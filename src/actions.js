@@ -50,6 +50,6 @@ export const setUser=(newId)=>{
 }
 export const logoutUser=(data)=>{  
     return {
-            type: 'LOGOUT_USER',
+            type: 'LOGOUT_USER'
             }
 }
