@@ -39,6 +39,7 @@ class ReadUser extends React.Component{
             data.email = this.state.email
         }
         this.props.editUser(data)
+        this.showEditForm()
     }
 
     deleteUser=()=>{
