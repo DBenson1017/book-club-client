@@ -1,16 +1,18 @@
 import React from 'react';
-import { Image, Button, Segment, Grid, Table} from 'semantic-ui-react'
+import { Image, Button, Segment, Grid, Table, Label} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 
 class Results extends React.Component{
 
     clickHandler=()=>{
         console.log('click heard in Results', this.props)
+      
+
         let data={
             etag: this.props.book.id, 
             link: this.props.book.accessInfo.webReaderLink,
             title: this.props.book.volumeInfo.title, 
-            author: this.props.book.volumeInfo.authors[0],
+            author: this.props.book.volumeInfo?.authors[0]? this.props.book.volumeInfo.authors[0]: 'n/a',
             img: this.props.book.volumeInfo.imageLinks.thumbnail, 
             page: this.props.book.volumeInfo.pageCount,
             published: this.props.book.volumeInfo.publishedDate
@@ -25,7 +27,10 @@ class Results extends React.Component{
                 <Grid columns={2}>
                     <Grid.Column>
                 {this.props.book.volumeInfo.imageLinks?.thumbnail ?  
-                <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank'/> :
+                <>
+                <Image src={this.props.book.volumeInfo.imageLinks.thumbnail} bordered size='small' href={this.props.book.accessInfo.webReaderLink} target='_blank'/><br></br>
+                <Label pointing='above' color='grey'>Click image to read an excerpt</Label> 
+                </>:
                 <Image  src='http://getwallpapers.com/wallpaper/full/2/1/9/699354-cute-dog-backgrounds-2560x2048-htc.jpg'/>
             }
 
@@ -49,7 +54,12 @@ class Results extends React.Component{
                                 <h4>Author</h4>
                             </Table.Cell>
                             <Table.Cell>
-                            {this.props.book.volumeInfo.authors[0]}
+
+                            {this.props.book.volumeInfo.authors ?  
+                            this.props.book.volumeInfo?.authors[0]:
+                            <h4>n/a</h4>
+                            }
+
                             </Table.Cell>
                         </Table.Row>
 
