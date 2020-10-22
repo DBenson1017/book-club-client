@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { Input} from 'semantic-ui-react'
 
 class Signup extends React.Component{
     
@@ -23,12 +24,12 @@ class Signup extends React.Component{
     render(){
         return (
             <form id='sign-up' onSubmit={this.submitHandler}>
-            <input onChange={this.changeHandler} name='first_name' placeholder='First Name' type='text' value={this.state.first_name} /> <br></br>      
-            <input onChange={this.changeHandler} name='last_name' placeholder='Last Name' type='text' value={this.state.last_name} /><br></br>       
-            <input onChange={this.changeHandler} name='username' placeholder='Username' type='text' value={this.state.username}/><br></br>            
-            <input onChange={this.changeHandler} name='email' placeholder='Email' type='text' value={this.state.email}/><br></br>           
-            <input onChange={this.changeHandler} name='password' placeholder='Password' type='text' value={this.state.password}/><br></br>
-            <input type='submit' value='Submit'/>
+            <Input onChange={this.changeHandler} name='first_name' placeholder='First Name' type='text' value={this.state.first_name} /> <br></br>      
+            <Input onChange={this.changeHandler} name='last_name' placeholder='Last Name' type='text' value={this.state.last_name} /><br></br>       
+            <Input onChange={this.changeHandler} name='username' placeholder='Username' type='text' value={this.state.username}/><br></br>            
+            <Input onChange={this.changeHandler} name='email' placeholder='Email' type='text' value={this.state.email}/><br></br>           
+            <Input onChange={this.changeHandler} name='password' placeholder='Password' type='text' value={this.state.password}/><br></br>
+            <Input type='submit' value='Submit'/>
         </form>
         )
     } 

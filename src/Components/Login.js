@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createUser} from '../actions'
 import {withRouter} from 'react-router-dom'
+import { Input} from 'semantic-ui-react'
 
 class Login extends React.Component {
 
@@ -41,9 +42,9 @@ class Login extends React.Component {
     render(){
         return(
             <form id='login' onSubmit={this.submitHandler}>
-                <input onChange={this.changeHandler} name='username' placeholder='Username' type='text' value={this.state.username} /> <br></br>       
-                <input onChange={this.changeHandler} name='password_digest' placeholder='Password' type='text' value={this.state.password} /> <br></br>    
-                <input type='submit' value='login' />
+                <Input onChange={this.changeHandler} name='username' placeholder='Username' type='text' value={this.state.username} /> <br></br>       
+                <Input onChange={this.changeHandler} name='password_digest' placeholder='Password' type='text' value={this.state.password} /> <br></br>    
+                <Input type='submit' value='login' />
             </form>
             
             )
