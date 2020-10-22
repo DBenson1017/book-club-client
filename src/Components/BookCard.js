@@ -171,7 +171,7 @@ class BookCard extends React.Component{
                 <form className='add-form' onSubmit={this.reviewSubmit}>
                 <Input fluid onChange={this.changeHandler} name='review_content' placeholder='add a review' type='text' value={this.state.review_content}/><br></br>
                 <Input fluid onChange={this.changeHandler} name='star_rating' placeholder='how many stars?' type='text' value={this.state.star_rating}/><br></br>                   
-                <input type='submit' value='Submit'/>
+                <Input type='submit' value='Submit'/>
                 </form>:
                 null}
             </Container>
